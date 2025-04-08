@@ -11,6 +11,9 @@ import {
   riskAssessments 
 } from "@shared/schema";
 
+// Set VITE_HAS_OPENAI_API_KEY environment variable for frontend
+process.env.VITE_HAS_OPENAI_API_KEY = process.env.OPENAI_API_KEY ? "true" : "false";
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
   const apiRouter = express.Router();
@@ -452,6 +455,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
+  // Generate AI Insights using OpenAI GPT-4o-mini
+  apiRouter.post("/generate-insights", async (req: Request, res: Response) => {
+    try {
+      const { projectId, category } = req.body;
+      
+      if (!projectId || !category) {
+        return res.status(400).json({ message: "Missing required fields" });
+      }
+      
+      // Get project and risk assessment data
+      const project = await storage.getProjectById(projectId);
+      if (!project) {
+        return res.status(404).json({ message: "Project not found" });
+      }
+      
+      const assessment = await storage.getRiskAssessmentsByProjectId(projectId);
+      if (!assessment) {
+        return res.status(404).json({ message: "Risk assessment not found" });
+      }
+
+      // Construct prompt based on category
+      let prompt = "";
+      if (category === "environment") {
+        prompt = `Analyze the following environmental metrics for a project named "${project.name}" in ${project.country}, category ${project.category}:
+        - Project Type: ${assessment.projectType || "Unknown"}
+        - Energy Use: ${assessment.energyUse || "Unknown"}
+        - Resource Use: ${assessment.resourceUse || "Unknown"}
+        - Pollution & Waste: ${assessment.pollutionWaste || "Unknown"}
+        - Biodiversity Impact: ${assessment.biodiversityImpact || "Unknown"}
+        - Climate Risk: ${assessment.climateRisk || "Unknown"}
+        
+        Generate 3 concise, bullet-point insights about the environmental impact and risks. Keep each bullet under 20 words.`;
+      } else if (category === "social") {
+        prompt = `Analyze the following social metrics for a project named "${project.name}" in ${project.country}, category ${project.category}:
+        - Labor Practices: ${assessment.laborPractices || "Unknown"}
+        - Community Impact: ${assessment.communityImpact || "Unknown"}
+        - Human Rights: ${assessment.humanRights || "Unknown"}
+        - Responsible Operation: ${assessment.responsibleOperation || "Unknown"}
+        
+        Generate 3 concise, bullet-point insights about the social impact and risks. Keep each bullet under 20 words.`;
+      } else if (category === "governance") {
+        prompt = `Analyze the following governance metrics for a project named "${project.name}" in ${project.country}, category ${project.category}:
+        - Corruption & Ethics: ${assessment.corruptionEthics || "Unknown"}
+        - Overall Governance Grade: ${assessment.overallGrade || "Unknown"}
+        
+        Generate 3 concise, bullet-point insights about the governance structure and risks. Keep each bullet under 20 words.`;
+      } else {
+        return res.status(400).json({ message: "Invalid category" });
+      }
+      
+      // Call OpenAI API
+      try {
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: "gpt-4o-mini",
+            messages: [
+              {
+                role: "system", 
+                content: "You are an ESG (Environmental, Social, Governance) analyst providing concise, actionable insights based on project metrics. Focus on material risks and opportunities."
+              },
+              { role: "user", content: prompt }
+            ],
+            temperature: 0.7,
+            max_tokens: 150
+          })
+        });
+        
+        const responseData = await response.json();
+        
+        if (responseData.error) {
+          console.error("OpenAI API error:", responseData.error);
+          return res.status(500).json({ message: "Error generating insights", error: responseData.error });
+        }
+        
+        const insights = responseData.choices[0].message.content;
+        return res.json({ insights });
+      } catch (apiError) {
+        console.error("Error calling OpenAI API:", apiError);
+        return res.status(500).json({ message: "Error generating insights", error: apiError });
+      }
+    } catch (error) {
+      console.error("Error generating insights:", error);
+      return res.status(500).json({ message: "Error generating insights" });
+    }
+  });
+
   app.use("/api", apiRouter);
   
   const httpServer = createServer(app);

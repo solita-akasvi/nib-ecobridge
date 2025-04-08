@@ -1,0 +1,49 @@
+Here’s a concise Replit prompt to replace the current Dashboard with a killer one-page “Live Project” view. It integrates ESG metrics (E, S, G) and color-coded ratings, shows a project description, and includes AI-generated insights powered by GPT-4o-mini. Keep the same style as other screens; a 1440 x 960 layout is ideal.
+
+Replit Prompt: Killer “Live Project” Page
+Replace the current Dashboard screen with a new single-page “Project View” that displays:
+
+Project Title & Short Description (e.g. “SolaraGrid Renewables”).
+
+Color-coded ESG ratings for Environment, Social, and Governance (Low, Medium, High, Critical).
+
+Key ESG Metrics (E, then S, then G), each with sub-points (1–6 for E, 7–11 for S & G) and a quick rating (A-D or color-coded).
+
+AI Insights: A short summary panel for each ESG area (E, S, G), generated from GPT-4o-mini (important to specify the cheaper mini model).
+
+Design/UX:
+
+Keep left nav (Dashboard, Analytics, etc.) consistent with the current style.
+
+At the top: Big title, short project description.
+
+Below: A three-column or tabbed layout for Environment, Social, Governance, each showing:
+
+Sub-metrics with a short label and a color-coded pill (A-D or Low-High).
+
+“AI Insights” box for that category (when user clicks “Generate Insights” or auto-generate).
+
+Right side: small chart/graph or progress ring with overall ESG performance (optional).
+
+Possibly add a button to “See Full ESG Analysis” for deeper drill-down.
+
+Implementation:
+
+Preload the page with a sample project card (e.g. “SolaraGrid Renewables”) and mock data for each metric.
+
+Use GPT-4o-mini with your OpenAI key to generate short bullet-point insights. Example call:
+
+js
+Copy
+// Example pseudo-code
+const response = await openai.createChatCompletion({
+  model: "gpt-4o-mini",
+  messages: [
+    { role: "system", content: "You are an ESG analyst..." },
+    { role: "user", content: "Analyze these metrics..." }
+  ],
+  // ...
+});
+Keep the layout minimal and visually appealing; remember you only have 3 minutes to demo.
+
+That’s it! This ensures your hackathon “killer page” has a clear, investor-ready view with ESG ratings, AI insights, and a crisp design.

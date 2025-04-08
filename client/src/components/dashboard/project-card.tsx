@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "wouter";
 import { Project } from "@/types";
 import { 
   Card, 
@@ -26,11 +27,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     mutationFn: async () => {
       // In a real app, we would use actual user ID
       const userId = 1;
-      const response = await apiRequest("POST", "/api/bookmarks", {
+      const data = {
         userId,
         projectId: project.id
+      };
+      return await apiRequest("/api/bookmarks", {
+        method: "POST",
+        body: JSON.stringify(data)
       });
-      return response.json();
     },
     onSuccess: () => {
       setIsBookmarked(true);
@@ -132,10 +136,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <Bookmark className="mr-1.5 h-4 w-4" />
             {isBookmarked ? "Saved" : "Save"}
           </Button>
-          <Button className="flex-1 flex items-center justify-center">
-            <Info className="mr-1.5 h-4 w-4" />
-            Details
-          </Button>
+          <Link href={`/projects/${project.id}`}>
+            <Button className="flex-1 flex items-center justify-center">
+              <Info className="mr-1.5 h-4 w-4" />
+              Details
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>

@@ -6,6 +6,7 @@ import Dashboard from "@/pages/dashboard";
 import RiskAssessment from "@/pages/risk-assessment";
 import ProjectGallery from "@/pages/project-gallery";
 import Resources from "@/pages/resources";
+import Project from "@/pages/project";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -15,6 +16,7 @@ function Router() {
       <Route path="/risk-assessment" component={RiskAssessment} />
       <Route path="/project-gallery" component={ProjectGallery} />
       <Route path="/resources" component={Resources} />
+      <Route path="/projects/:id" component={Project} />
       <Route component={NotFound} />
     </Switch>
   );
