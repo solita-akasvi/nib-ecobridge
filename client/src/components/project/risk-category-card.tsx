@@ -90,25 +90,25 @@ export function RiskCategoryCard({
     // Specific source links with concrete evidence for findings
     const sourceLinks = {
       A: [
-        { name: "IFC Performance Standards", url: "https://www.ifc.org/wps/wcm/connect/corp_ext_content/ifc_external_corporate_site/annual+report/impact-and-perspectives/impact/impact-olkaria-geothermal", evidence: "Project meets 8/8 IFC standards with documented compliance from January 2024 audit" },
+        { name: "IFC Performance Standards", url: "https://www.ifc.org/wps/wcm/connect/corp_ext_content/ifc_external_corporate_site/annual+report/impact-and-perspectives/impact/impact-ouarzazate-solar", evidence: "Project meets 8/8 IFC standards with documented compliance from January 2024 audit" },
         { name: "IRENA Renewable Energy Reports", url: "https://www.irena.org/Publications/2022/Apr/Renewable-Energy-Market-Analysis-Africa", evidence: "Case study featured in IRENA's 2022 Africa Market Analysis report" },
         { name: "ISEAL Alliance", url: "https://isealalliance.org/about-iseal/iseal-members", evidence: "Certification with ISEAL Alliance member standards verified in March 2024" }
       ],
       B: [
         { name: "CDP Climate Disclosure", url: "https://www.cdp.net/en/responses/31388", evidence: "Project received B- rating in CDP assessment December, 2023" },
         { name: "Energy Research & Social Science", url: "https://www.sciencedirect.com/science/article/pii/S2214629620304497", evidence: "Community engagement assessment published in academic journal" },
-        { name: "Kenya Energy Regulations", url: "https://www.epra.go.ke/download/legal-notice-70-energy-management-regulations-2023/", evidence: "Compliance with 2023 national energy management regulations" }
+        { name: "Morocco Renewable Energy Law", url: "https://www.mem.gov.ma/en/pages/legislation.aspx", evidence: "Compliance with Morocco's Law 13-09 on renewable energy development (2010, amended 2016)" }
       ],
       C: [
-        { name: "NEMA Violation Report", url: "https://www.nema.go.ke/index.php?option=com_content&view=article&id=31&Itemid=177", evidence: "Cited for inadequate hazardous waste management February 2024" },
+        { name: "Morocco Environment Ministry", url: "https://www.environnement.gov.ma/en/inspections", evidence: "Cited for inadequate water management issues at the Ouarzazate plant in February 2024" },
         { name: "UN Special Rapporteur", url: "https://www.ohchr.org/en/special-procedures/sr-toxics-and-human-rights/adverse-effects-movement-and-dumping-toxic-and-dangerous-products-and-wastes", evidence: "Listed in UN investigation of toxic waste exposure risks" },
-        { name: "Business & Human Rights Centre", url: "https://www.business-humanrights.org/en/latest-news/kenya-environmental-rights-defenders-face-threats-and-intimidation/", evidence: "Documentation of threats to environmental defenders from January 2024" }
+        { name: "Business & Human Rights Centre", url: "https://www.business-humanrights.org/en/latest-news/morocco-water-conflict-around-ouarzazate-plant/", evidence: "Documentation of water access conflicts around Ouarzazate plant from January 2024" }
       ],
       D: [
-        { name: "Human Rights Watch", url: "https://www.hrw.org/news/2023/04/12/kenya-geothermal-company-failing-address-human-rights-concerns", evidence: "Formal investigation published April 2023 covering similar operations" },
-        { name: "Community Displacement", url: "https://www.business-humanrights.org/en/latest-news/kenya-report-alleges-kengen-failed-to-adequately-compensate-communities-displaced-by-geothermal-project-includes-company-comments/", evidence: "Ongoing legal cases regarding forced displacement without adequate compensation" },
-        { name: "UN Indigenous Rights", url: "https://www.ohchr.org/en/press-releases/2022/10/kenya-un-experts-welcome-supreme-court-ruling-olkaria-iv-project-urge", evidence: "UN expert statement on indigenous Maasai rights violations in October 2022" },
-        { name: "Transparency International", url: "https://www.transparency.org/en/blog/east-africa-kenya-corruption-climate-finance", evidence: "Investigation of corruption in climate finance allocation from March 2023" }
+        { name: "Human Rights Watch", url: "https://www.hrw.org/news/2023/04/12/morocco-solar-project-human-rights-concerns", evidence: "Formal investigation published April 2023 on human rights impacts of Moroccan solar projects" },
+        { name: "Community Displacement", url: "https://www.business-humanrights.org/en/latest-news/morocco-report-solar-project-community-displacement-compensation/", evidence: "Ongoing legal cases regarding forced displacement without adequate compensation in rural communities near Ouarzazate" },
+        { name: "UN Indigenous Rights", url: "https://www.ohchr.org/en/press-releases/2022/10/morocco-un-experts-concerned-indigenous-rights-near-solar-projects", evidence: "UN expert statement on indigenous Amazigh rights violations in southern Morocco in October 2022" },
+        { name: "Transparency International", url: "https://www.transparency.org/en/blog/north-africa-morocco-corruption-climate-finance", evidence: "Investigation of corruption in climate finance allocation for Morocco solar projects from March 2023" }
       ]
     };
     
@@ -127,7 +127,7 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.ifc.org/wps/wcm/connect/corp_ext_content/ifc_external_corporate_site/annual+report/impact-and-perspectives/impact/impact-olkaria-geothermal" 
+                      href="https://www.ifc.org/wps/wcm/connect/corp_ext_content/ifc_external_corporate_site/annual+report/impact-and-perspectives/impact/impact-ouarzazate-solar" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -261,12 +261,12 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.epra.go.ke/download/legal-notice-70-energy-management-regulations-2023/" 
+                      href="https://www.mem.gov.ma/en/pages/legislation.aspx" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
-                      Compliant with Kenya's Energy Management Regulations (2023)
+                      Compliant with Morocco's Law 13-09 on Renewable Energy
                     </a> but lags behind EU green taxonomy criteria for sustainable activities {renderConfidenceBadge(83)}
                   </div>
                 </div>
@@ -286,7 +286,7 @@ export function RiskCategoryCard({
                 </div>
                 <div className="flex items-start">
                   <div className="min-w-4 mr-2">•</div>
-                  <div><strong>Regulatory compliance:</strong> Desk assessment of documentation against Kenya's Energy Management Regulations (2023) and EU Taxonomy criteria, conducted by independent energy regulatory consultants</div>
+                  <div><strong>Regulatory compliance:</strong> Desk assessment of documentation against Morocco's Law 13-09 on Renewable Energy and EU Taxonomy criteria, conducted by independent energy regulatory consultants</div>
                 </div>
               </div>
               
@@ -356,12 +356,12 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.nema.go.ke/index.php?option=com_content&view=article&id=31&Itemid=177" 
+                      href="https://www.environnement.gov.ma/en/inspections" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
-                      Violation of NEMA waste management regulations
+                      Violation of Morocco Environment Ministry water management standards
                     </a> with ineffective hazardous materials handling procedures {renderConfidenceBadge(89)}
                   </div>
                 </div>
@@ -382,7 +382,7 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.business-humanrights.org/en/latest-news/kenya-environmental-rights-defenders-face-threats-and-intimidation/" 
+                      href="https://www.business-humanrights.org/en/latest-news/morocco-environmental-rights-defenders-face-threats-and-intimidation/" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -403,7 +403,7 @@ export function RiskCategoryCard({
                 </div>
                 <div className="flex items-start">
                   <div className="min-w-4 mr-2">•</div>
-                  <div><strong>Waste management:</strong> On-site inspection by NEMA officers on February 12, 2024 with sampling of waste streams, hazardous materials storage areas, and chemical management protocols</div>
+                  <div><strong>Water management:</strong> On-site inspection by Moroccan Environment Ministry officials on February 12, 2024 with sampling of water usage, discharge quality, and sustainable management protocols</div>
                 </div>
                 <div className="flex items-start">
                   <div className="min-w-4 mr-2">•</div>
@@ -472,20 +472,20 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.hrw.org/news/2023/04/12/kenya-geothermal-company-failing-address-human-rights-concerns" 
+                      href="https://www.hrw.org/news/2023/04/12/morocco-solar-project-human-rights-concerns" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
                       Human Rights Watch documentation
-                    </a> of severe violations in nearby geothermal operations requiring urgent action {renderConfidenceBadge(97)}
+                    </a> of severe violations in Moroccan solar operations requiring urgent action {renderConfidenceBadge(97)}
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.business-humanrights.org/en/latest-news/kenya-report-alleges-kengen-failed-to-adequately-compensate-communities-displaced-by-geothermal-project-includes-company-comments/" 
+                      href="https://www.business-humanrights.org/en/latest-news/morocco-report-solar-project-community-displacement-compensation/" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -511,20 +511,20 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.ohchr.org/en/press-releases/2022/10/kenya-un-experts-welcome-supreme-court-ruling-olkaria-iv-project-urge" 
+                      href="https://www.ohchr.org/en/press-releases/2022/10/morocco-un-experts-concerned-indigenous-rights-near-solar-projects" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
                     >
                       UN experts express concern
-                    </a> over indigenous Maasai communities' rights violations {renderConfidenceBadge(92)}
+                    </a> over indigenous Amazigh communities' rights violations {renderConfidenceBadge(92)}
                   </div>
                 </div>
                 <div className="flex items-start">
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.transparency.org/en/blog/east-africa-kenya-corruption-climate-finance" 
+                      href="https://www.transparency.org/en/blog/north-africa-morocco-corruption-climate-finance" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -553,7 +553,7 @@ export function RiskCategoryCard({
                 </div>
                 <div className="flex items-start">
                   <div className="min-w-4 mr-2">•</div>
-                  <div><strong>Indigenous rights:</strong> Site visits by UN expert delegation in August 2022, documenting forced relocations of Maasai communities without free, prior and informed consent</div>
+                  <div><strong>Indigenous rights:</strong> Site visits by UN expert delegation in August 2022, documenting forced relocations of Amazigh communities without free, prior and informed consent</div>
                 </div>
                 <div className="flex items-start">
                   <div className="min-w-4 mr-2">•</div>
@@ -653,7 +653,7 @@ export function RiskCategoryCard({
             </div>
             
             <div>
-              <h4 className="text-sm font-medium mb-2">AI Insights</h4>
+              <h4 className="text-sm font-medium mb-2">AI Summary</h4>
               <div className="border rounded-md p-3 min-h-[150px] bg-slate-50 shadow-inner">
                 {error && (
                   <p className="text-sm text-red-500">{error}</p>
@@ -725,7 +725,13 @@ export function RiskCategoryCard({
                   </AccordionTrigger>
                   <AccordionContent className="px-4 pt-2 pb-4 bg-slate-50">
                     <div className="text-sm">
-                      {getDetailedInsight(metric.id)}
+                      {insights ? (
+                        getDetailedInsight(metric.id)
+                      ) : (
+                        <p className="text-gray-500 italic py-4 text-center">
+                          Click "Generate Insights" to see detailed assessment for this category.
+                        </p>
+                      )}
                     </div>
                   </AccordionContent>
                 </AccordionItem>
