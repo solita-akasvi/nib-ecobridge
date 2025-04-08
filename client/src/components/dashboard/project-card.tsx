@@ -114,7 +114,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
         
         <div className="grid grid-cols-3 gap-2 mb-4">
-          <div className="text-center p-2 bg-white bg-opacity-70 rounded border border-eco">
+          <div className="text-center p-2 bg-green-100 rounded border border-green-300">
             <div className={`text-lg font-semibold ${
               project.environmentGrade === 'A' ? 'text-green-600' :
               project.environmentGrade === 'B' ? 'text-blue-600' :
@@ -126,7 +126,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </div>
             <div className="text-xs text-green-700">Environment</div>
           </div>
-          <div className="text-center p-2 bg-white bg-opacity-70 rounded border border-eco">
+          <div className="text-center p-2 bg-green-100 rounded border border-green-300">
             <div className={`text-lg font-semibold ${
               project.socialGrade === 'A' ? 'text-green-600' :
               project.socialGrade === 'B' ? 'text-blue-600' :
@@ -138,7 +138,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </div>
             <div className="text-xs text-green-700">Social</div>
           </div>
-          <div className="text-center p-2 bg-white bg-opacity-70 rounded border border-eco">
+          <div className="text-center p-2 bg-green-100 rounded border border-green-300">
             <div className={`text-lg font-semibold ${
               project.governanceGrade === 'A' ? 'text-green-600' :
               project.governanceGrade === 'B' ? 'text-blue-600' :
