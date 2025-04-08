@@ -1,32 +1,48 @@
 import { FilterOptions } from '@/types';
 
 export const COUNTRIES = [
-  { value: "South Africa", label: "South Africa" },
-  { value: "Kenya", label: "Kenya" },
-  { value: "Namibia", label: "Namibia" },
-  { value: "Ghana", label: "Ghana" },
-  { value: "Nigeria", label: "Nigeria" },
+  "South Africa",
+  "Kenya",
+  "Namibia",
+  "Ghana",
+  "Nigeria",
+  "Tanzania",
+  "Ethiopia",
+  "Senegal",
+  "Rwanda",
+  "Uganda",
+  "Zambia",
+  "Mozambique",
+  "Botswana",
+  "Malawi",
+  "Zimbabwe",
 ];
 
 export const CATEGORIES = [
-  { value: "Renewable Energy", label: "Renewable Energy" },
-  { value: "Conservation", label: "Conservation" },
-  { value: "Sustainable Agriculture", label: "Sustainable Agriculture" },
-  { value: "Water Management", label: "Water Management" },
-  { value: "Waste Management", label: "Waste Management" },
+  "Renewable Energy",
+  "Conservation",
+  "Sustainable Agriculture",
+  "Water Management",
+  "Waste Management",
+  "Green Building",
+  "Climate Resilience",
+  "Health & Sanitation",
+  "Education",
+  "Sustainable Transportation",
 ];
 
 export const PROJECT_SIZES = [
-  { value: "Small (< $1M)", label: "Small (< $1M)" },
-  { value: "Medium ($1M - $10M)", label: "Medium ($1M - $10M)" },
-  { value: "Large ($10M - $50M)", label: "Large ($10M - $50M)" },
-  { value: "Extra Large (> $50M)", label: "Extra Large (> $50M)" },
+  "Small (< $1M)",
+  "Medium ($1M - $10M)",
+  "Large ($10M - $50M)",
+  "Extra Large (> $50M)",
 ];
 
 export const RISK_LEVELS = [
-  { value: "Low", label: "Low Risk" },
-  { value: "Medium", label: "Medium Risk" },
-  { value: "High", label: "High Risk" },
+  "Low",
+  "Moderate",
+  "High",
+  "Very High",
 ];
 
 export const getLevelColor = (level: string | undefined): {
@@ -41,9 +57,11 @@ export const getLevelColor = (level: string | undefined): {
   switch (level) {
     case "Low":
       return { bg: "bg-green-100", text: "text-green-800", barColor: "bg-green-500" };
-    case "Medium":
+    case "Moderate":
       return { bg: "bg-yellow-100", text: "text-yellow-800", barColor: "bg-yellow-500" };
     case "High":
+      return { bg: "bg-orange-100", text: "text-orange-800", barColor: "bg-orange-500" };
+    case "Very High":
       return { bg: "bg-red-100", text: "text-red-800", barColor: "bg-red-500" };
     default:
       return { bg: "bg-gray-100", text: "text-gray-800", barColor: "bg-gray-500" };

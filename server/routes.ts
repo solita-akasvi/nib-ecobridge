@@ -141,30 +141,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create a risk assessment
   apiRouter.post("/risk-assessments", async (req: Request, res: Response) => {
     try {
-      const validatedData = insertRiskAssessmentSchema.parse(req.body);
+      // For the new assessment model, we need to be more flexible
+      // Only validate projectId as required for now
+      const { projectId, assessment } = req.body;
+      
+      if (!projectId || typeof projectId !== 'number') {
+        return res.status(400).json({ message: "Invalid or missing projectId" });
+      }
       
       // Check if project exists
-      const project = await storage.getProjectById(validatedData.projectId);
+      const project = await storage.getProjectById(projectId);
       if (!project) {
         return res.status(404).json({ message: "Project not found" });
       }
       
-      const newAssessment = await storage.createRiskAssessment(validatedData);
-      
-      // Update project risk score and level
-      await storage.updateProject(project.id, {
-        riskScore: newAssessment.overallRisk,
-        riskLevel: newAssessment.riskLevel
+      // Create the assessment with the new model data
+      const newAssessment = await storage.createRiskAssessment({ 
+        projectId, 
+        ...assessment
       });
       
       return res.status(201).json(newAssessment);
     } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ 
-          message: "Invalid risk assessment data",
-          errors: error.errors
-        });
-      }
+      console.error("Error creating risk assessment:", error);
       return res.status(500).json({ message: "Error creating risk assessment" });
     }
   });

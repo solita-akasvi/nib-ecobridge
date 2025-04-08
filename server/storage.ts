@@ -304,6 +304,68 @@ export class MemStorage implements IStorage {
     const createdAt = new Date();
     const assessment: RiskAssessment = { ...insertAssessment, id, createdAt };
     this.riskAssessments.set(id, assessment);
+    
+    // Update the associated project with the risk score and level
+    const project = this.projects.get(assessment.projectId);
+    if (project) {
+      // Handle both old and new risk assessment models
+      if ('overallRisk' in assessment) {
+        project.riskScore = assessment.overallRisk;
+        project.riskLevel = assessment.riskLevel;
+      } else if ('overallScore' in assessment) {
+        project.riskScore = assessment.overallScore * 25; // Scale to 0-100 for compatibility
+        
+        // Map grades to risk levels for compatibility
+        const gradeToLevel: Record<string, string> = {
+          "A": "Low",
+          "B": "Medium",
+          "C": "High",
+          "D": "Very High"
+        };
+        
+        project.riskLevel = assessment.overallGrade ? gradeToLevel[assessment.overallGrade] || "Medium" : "Medium";
+      }
+      
+      // Update environmental, social, and governance grades based on assessment if available
+      if ('energyUse' in assessment) {
+        // Calculate average environmental grade from available fields
+        const envGrades = [
+          assessment.energyUse, 
+          assessment.resourceUse, 
+          assessment.pollutionWaste,
+          assessment.biodiversityImpact,
+          assessment.climateRisk
+        ].filter(Boolean);
+        
+        if (envGrades.length > 0) {
+          project.environmentGrade = envGrades[0];
+        }
+        
+        // Use a representative social grade
+        const socialGrades = [
+          assessment.laborPractices,
+          assessment.communityImpact,
+          assessment.humanRights
+        ].filter(Boolean);
+        
+        if (socialGrades.length > 0) {
+          project.socialGrade = socialGrades[0];
+        }
+        
+        // Use a representative governance grade
+        const govGrades = [
+          assessment.responsibleOperation,
+          assessment.corruptionEthics
+        ].filter(Boolean);
+        
+        if (govGrades.length > 0) {
+          project.governanceGrade = govGrades[0];
+        }
+      }
+      
+      this.projects.set(project.id, project);
+    }
+    
     return assessment;
   }
 

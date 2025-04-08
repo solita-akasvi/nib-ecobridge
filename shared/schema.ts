@@ -50,18 +50,38 @@ export const insertProjectSchema = createInsertSchema(projects).omit({
 export const riskAssessments = pgTable("risk_assessments", {
   id: serial("id").primaryKey(),
   projectId: integer("project_id").notNull(),
-  politicalRisk: integer("political_risk").notNull(),
-  environmentalRisk: integer("environmental_risk").notNull(),
-  socialRisk: integer("social_risk").notNull(),
-  regulatoryRisk: integer("regulatory_risk").notNull(),
-  supplyChainRisk: integer("supply_chain_risk").notNull(),
-  overallRisk: integer("overall_risk").notNull(),
-  riskLevel: text("risk_level").notNull(),
+  
+  // Legacy risk model fields
+  politicalRisk: integer("political_risk"),
+  environmentalRisk: integer("environmental_risk"),
+  socialRisk: integer("social_risk"),
+  regulatoryRisk: integer("regulatory_risk"),
+  supplyChainRisk: integer("supply_chain_risk"),
+  overallRisk: integer("overall_risk"),
   politicalNotes: text("political_notes"),
   environmentalNotes: text("environmental_notes"),
   socialNotes: text("social_notes"),
   regulatoryNotes: text("regulatory_notes"),
   supplyChainNotes: text("supply_chain_notes"),
+  
+  // New grade-based assessment model fields
+  projectType: varchar("project_type", { length: 1 }),
+  energyUse: varchar("energy_use", { length: 1 }),
+  resourceUse: varchar("resource_use", { length: 1 }),
+  pollutionWaste: varchar("pollution_waste", { length: 1 }),
+  biodiversityImpact: varchar("biodiversity_impact", { length: 1 }),
+  climateRisk: varchar("climate_risk", { length: 1 }),
+  laborPractices: varchar("labor_practices", { length: 1 }),
+  communityImpact: varchar("community_impact", { length: 1 }),
+  humanRights: varchar("human_rights", { length: 1 }),
+  responsibleOperation: varchar("responsible_operation", { length: 1 }),
+  corruptionEthics: varchar("corruption_ethics", { length: 1 }),
+  newsScreening: varchar("news_screening", { length: 1 }),
+  overallGrade: varchar("overall_grade", { length: 1 }),
+  overallScore: integer("overall_score"),
+  
+  // Common fields
+  riskLevel: text("risk_level").notNull(),
   overallNotes: text("overall_notes"),
   createdAt: timestamp("created_at").defaultNow(),
 });

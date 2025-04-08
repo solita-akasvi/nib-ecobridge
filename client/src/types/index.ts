@@ -1,24 +1,30 @@
-export interface RiskScore {
-  score: number;
-  level: "Low" | "Medium" | "High";
-  notes?: string;
+export type GradeType = "A" | "B" | "C" | "D" | "";
+
+export interface RiskCategory {
+  id: string;
+  title: string;
+  description: string;
+  tooltip: string;
+  grade: GradeType;
 }
 
 export interface RiskAssessment {
   id: number;
   projectId: number;
-  politicalRisk: number;
-  environmentalRisk: number;
-  socialRisk: number;
-  regulatoryRisk: number;
-  supplyChainRisk: number;
-  overallRisk: number;
-  riskLevel: string;
-  politicalNotes?: string;
-  environmentalNotes?: string;
-  socialNotes?: string;
-  regulatoryNotes?: string;
-  supplyChainNotes?: string;
+  projectType: GradeType;
+  energyUse: GradeType;
+  resourceUse: GradeType;
+  pollutionWaste: GradeType;
+  biodiversityImpact: GradeType;
+  climateRisk: GradeType;
+  laborPractices: GradeType;
+  communityImpact: GradeType;
+  humanRights: GradeType;
+  responsibleOperation: GradeType;
+  corruptionEthics: GradeType;
+  newsScreening?: GradeType;
+  overallGrade: GradeType;
+  overallScore: number;
   overallNotes?: string;
   createdAt?: Date;
 }

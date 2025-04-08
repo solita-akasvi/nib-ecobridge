@@ -1,16 +1,24 @@
 import { useState } from "react";
 import Navbar from "@/components/layout/navbar";
-import RiskForm from "@/components/dashboard/risk-form";
+import AssessmentForm from "@/components/dashboard/assessment-form";
 import RiskVisualization from "@/components/dashboard/risk-visualization";
 import { Project, RiskAssessment } from "@/types";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 export default function RiskAssessmentPage() {
-  const [currentProject, setCurrentProject] = useState<Project | null>(null);
-  const [currentRiskAssessment, setCurrentRiskAssessment] = useState<RiskAssessment | null>(null);
+  const [assessmentResult, setAssessmentResult] = useState<{ 
+    project: Project; 
+    riskAssessment: RiskAssessment 
+  } | null>(null);
   
   const handleAssessmentComplete = (data: { project: Project; riskAssessment: RiskAssessment }) => {
-    setCurrentProject(data.project);
-    setCurrentRiskAssessment(data.riskAssessment);
+    setAssessmentResult(data);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
+  const startNewAssessment = () => {
+    setAssessmentResult(null);
   };
   
   return (
@@ -24,60 +32,68 @@ export default function RiskAssessmentPage() {
                 ESG Risk Assessment Tool
               </h1>
               <p className="mt-1 text-neutral-500">
-                Evaluate the sustainability risks for your projects in Global South countries
+                Evaluate the sustainability risks for your projects using our structured grading system
               </p>
             </div>
           </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-1 bg-white rounded-lg shadow p-6">
-              <h2 className="text-lg font-medium text-neutral-800 mb-4">Project Details</h2>
-              <RiskForm onAssessmentComplete={handleAssessmentComplete} />
-            </div>
-            
-            <div className="lg:col-span-2 bg-white rounded-lg shadow p-6">
-              {currentProject && currentRiskAssessment ? (
-                <RiskVisualization 
-                  project={currentProject} 
-                  riskAssessment={currentRiskAssessment}
-                />
-              ) : (
-                <div className="flex flex-col items-center justify-center h-full py-12 text-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="64"
-                    height="64"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="text-neutral-300 mb-4"
+
+          {assessmentResult ? (
+            <>
+              <div className="bg-white rounded-lg shadow p-6 mb-8">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-lg font-medium text-neutral-800">Assessment Results</h2>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={startNewAssessment}
+                    className="flex items-center"
                   >
-                    <path d="M3 3v18h18" />
-                    <path d="M18 9l-6-6-7 7" />
-                    <path d="M14 10l4 4" />
-                  </svg>
-                  <h3 className="text-lg font-medium text-neutral-700 mb-2">Enter Project Details</h3>
-                  <p className="text-neutral-500 max-w-md">
-                    Fill out the form on the left to generate a comprehensive risk assessment for your ESG project.
-                  </p>
-                  <div className="mt-6 space-y-4 text-left max-w-md">
-                    <div>
-                      <h4 className="text-sm font-medium text-neutral-800">How it works:</h4>
-                      <ul className="mt-2 list-disc list-inside text-sm text-neutral-600 space-y-1">
-                        <li>Enter basic information about your project</li>
-                        <li>Our algorithm analyzes political, environmental, social, regulatory, and supply chain risks</li>
-                        <li>Get a detailed risk profile with specific insights for your project type and location</li>
-                        <li>Use the assessment to develop risk mitigation strategies</li>
-                      </ul>
-                    </div>
-                  </div>
+                    <ArrowLeft className="mr-2 h-4 w-4" /> New Assessment
+                  </Button>
                 </div>
-              )}
-            </div>
-          </div>
+                <RiskVisualization 
+                  project={assessmentResult.project} 
+                  riskAssessment={assessmentResult.riskAssessment}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="bg-white rounded-lg shadow p-6 mb-8">
+                <h2 className="text-lg font-medium text-neutral-800 mb-4">How to Use This Tool</h2>
+                <div className="prose prose-neutral max-w-none">
+                  <p>
+                    This step-by-step assessment tool helps you evaluate the ESG risks of your project using a 
+                    standardized A-D grading system:
+                  </p>
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                    <li className="flex items-start">
+                      <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-green-100 text-green-800 font-medium text-sm mr-2">A</span>
+                      <span>Low risk - Excellent ESG performance</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-yellow-100 text-yellow-800 font-medium text-sm mr-2">B</span>
+                      <span>Moderate risk - Good ESG performance</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-orange-100 text-orange-800 font-medium text-sm mr-2">C</span>
+                      <span>High risk - Fair ESG performance</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-red-100 text-red-800 font-medium text-sm mr-2">D</span>
+                      <span>Very high risk - Poor ESG performance</span>
+                    </li>
+                  </ul>
+                  <p className="mt-4">
+                    Complete all sections for a comprehensive analysis of your project's ESG risks and receive 
+                    tailored improvement suggestions.
+                  </p>
+                </div>
+              </div>
+              
+              <AssessmentForm onAssessmentComplete={handleAssessmentComplete} />
+            </>
+          )}
         </div>
       </main>
     </>
