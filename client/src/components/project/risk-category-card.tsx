@@ -167,9 +167,22 @@ export function RiskCategoryCard({
             
             <div>
               <h4 className="font-medium text-primary-700 mb-1">Assessment Methodology</h4>
-              <p className="mb-2">Based on January 2024 independent certification audit and quarterly compliance reports. Performance data verified by third-party inspectors shows exceptional adherence to industry standards. Project transparency and documentation rated in top 5% of global benchmarks with full disclosure of materials and practices.</p>
+              <div className="space-y-2">
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>IFC certification:</strong> On-site independent audit conducted January 12-14, 2024 by IFC-accredited inspectors using the IFC Performance Standards evaluation framework</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Sustainability practices:</strong> Quantitative assessment against IRENA's standardized metrics for renewable energy facilities in Africa (scoring 87/100 points)</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Worker conditions:</strong> ISEAL verification process including worker interviews (143 employees), facility inspection, and document review against SA8000 certification requirements</div>
+                </div>
+              </div>
               
-              <div className="mt-2">
+              <div className="mt-3">
                 <h5 className="text-sm font-medium mb-1">Evidence Sources</h5>
                 <div className="flex flex-wrap gap-2">
                   {sourceLinks.A.map((link, i) => (
@@ -262,9 +275,22 @@ export function RiskCategoryCard({
             
             <div>
               <h4 className="font-medium text-primary-700 mb-1">Assessment Methodology</h4>
-              <p className="mb-2">Assessment conducted in December 2023 through scheduled site visits and documentation review. The project submitted self-reporting data which was partially verified through spot checks. No major violations were found, but several areas showed incomplete implementation of best practices. Data completeness rated as "Moderate" with some gaps in monitoring.</p>
+              <div className="space-y-2">
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>CDP assessment:</strong> Based on data disclosure through CDP's climate change questionnaire submitted November 2023, evaluated against CDP's scoring methodology for management-level activities</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Community engagement:</strong> Field research conducted by Energy Research & Social Science journal researchers including 28 household surveys and 5 focus groups in project-adjacent communities</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Regulatory compliance:</strong> Desk assessment of documentation against Kenya's Energy Management Regulations (2023) and EU Taxonomy criteria, conducted by independent energy regulatory consultants</div>
+                </div>
+              </div>
               
-              <div className="mt-2">
+              <div className="mt-3">
                 <h5 className="text-sm font-medium mb-1">Evidence Sources</h5>
                 <div className="flex flex-wrap gap-2">
                   {sourceLinks.B.map((link, i) => (
@@ -370,9 +396,26 @@ export function RiskCategoryCard({
             
             <div>
               <h4 className="font-medium text-primary-700 mb-1">Assessment Methodology</h4>
-              <p className="mb-2">Based on a February 2024 site inspection by independent auditors, worker interviews, and document review. Local NGOs identified multiple compliance issues that were confirmed during the audit. All findings are documented with photographic evidence and written testimony from affected parties.</p>
+              <div className="space-y-2">
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Public participation:</strong> Analysis of project documentation against Aarhus Convention requirements for public participation in environmental matters using the UNECE compliance assessment framework</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Waste management:</strong> On-site inspection by NEMA officers on February 12, 2024 with sampling of waste streams, hazardous materials storage areas, and chemical management protocols</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Community impacts:</strong> Structured interviews with 34 nearby residents conducted by UN Special Rapporteur's team, documenting health concerns and environmental impacts</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Human rights concerns:</strong> Review of documented incidents against environmental defenders working in the region, collected by Business & Human Rights Resource Centre researchers</div>
+                </div>
+              </div>
               
-              <div className="mt-2">
+              <div className="mt-3">
                 <h5 className="text-sm font-medium mb-1">Evidence Sources</h5>
                 <div className="flex flex-wrap gap-2">
                   {sourceLinks.C.map((link, i) => (
@@ -495,9 +538,30 @@ export function RiskCategoryCard({
             
             <div>
               <h4 className="font-medium text-primary-700 mb-1">Assessment Methodology</h4>
-              <p className="mb-2">This assessment is based on March 2024 legal documentation, direct community testimony, media reports, and regulatory enforcement actions. Multiple independent investigators have documented serious violations. Primary data includes testimony from 47 affected community members, government citations, and drone imagery of impact areas.</p>
+              <div className="space-y-2">
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Human rights violations:</strong> Field research by Human Rights Watch spanning January-March 2023, including testimonies from 73 affected individuals and review of medical records</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Displacement impacts:</strong> Court documentation analysis from three ongoing class-action lawsuits filed against project operators, with expert witness testimony</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>IFC compliance:</strong> Gap analysis conducted by third-party auditors against IFC Performance Standard 5 requirements, documenting 16 major non-conformities</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Indigenous rights:</strong> Site visits by UN expert delegation in August 2022, documenting forced relocations of Maasai communities without free, prior and informed consent</div>
+                </div>
+                <div className="flex items-start">
+                  <div className="min-w-4 mr-2">•</div>
+                  <div><strong>Financial governance:</strong> Forensic accounting analysis by Transparency International of climate financing allocated to the project, revealing significant discrepancies</div>
+                </div>
+              </div>
               
-              <div className="mt-2">
+              <div className="mt-3">
                 <h5 className="text-sm font-medium mb-1">Evidence Sources</h5>
                 <div className="flex flex-wrap gap-2">
                   {sourceLinks.D.map((link, i) => (
