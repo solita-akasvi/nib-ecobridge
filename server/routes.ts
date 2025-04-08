@@ -486,7 +486,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         - Biodiversity Impact: ${assessment.biodiversityImpact || "Unknown"}
         - Climate Risk: ${assessment.climateRisk || "Unknown"}
         
-        Generate 3 concise, bullet-point insights about the environmental impact and risks. Keep each bullet under 20 words.`;
+        Generate 2-3 concise, bullet-point insights about environmental risks and specific actionable recommendations. Each bullet should be 15 words or less.`;
       } else if (category === "social") {
         prompt = `Analyze the following social metrics for a project named "${project.name}" in ${project.country}, category ${project.category}:
         - Labor Practices: ${assessment.laborPractices || "Unknown"}
@@ -494,13 +494,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         - Human Rights: ${assessment.humanRights || "Unknown"}
         - Responsible Operation: ${assessment.responsibleOperation || "Unknown"}
         
-        Generate 3 concise, bullet-point insights about the social impact and risks. Keep each bullet under 20 words.`;
+        Generate 2-3 concise, bullet-point insights about social risks and specific actionable recommendations. Each bullet should be 15 words or less.`;
       } else if (category === "governance") {
         prompt = `Analyze the following governance metrics for a project named "${project.name}" in ${project.country}, category ${project.category}:
         - Corruption & Ethics: ${assessment.corruptionEthics || "Unknown"}
         - Overall Governance Grade: ${assessment.overallGrade || "Unknown"}
         
-        Generate 3 concise, bullet-point insights about the governance structure and risks. Keep each bullet under 20 words.`;
+        Generate 2-3 concise, bullet-point insights about governance risks and specific actionable recommendations. Each bullet should be 15 words or less.`;
       } else {
         return res.status(400).json({ message: "Invalid category" });
       }
@@ -518,7 +518,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             messages: [
               {
                 role: "system", 
-                content: "You are an ESG (Environmental, Social, Governance) analyst providing concise, actionable insights based on project metrics. Focus on material risks and opportunities."
+                content: "You are an ESG (Environmental, Social, Governance) analyst providing extremely concise, actionable insights based on project metrics. Focus on specific, practical actions stakeholders can take to mitigate risks. Keep responses brief, direct and implementable."
               },
               { role: "user", content: prompt }
             ],

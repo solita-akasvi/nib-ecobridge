@@ -59,20 +59,20 @@ export function RiskOverviewCard({ project, riskAssessment }: RiskOverviewCardPr
             </div>
           </div>
           
-          <div className="min-w-[250px] flex flex-col items-center justify-center border rounded-lg p-4">
-            <div className="mb-2 text-center">
-              <div className="text-sm font-medium text-gray-500 mb-1">Risk Level</div>
-              <Badge className={`${riskLevelColors.bg} ${riskLevelColors.text}`}>
+          <div className="min-w-[250px] flex flex-col items-center justify-center border rounded-lg p-4 shadow-md">
+            <div className="mb-3 text-center">
+              <div className="text-base font-medium text-gray-700 mb-2">Risk Level</div>
+              <Badge className={`${riskLevelColors.bg} ${riskLevelColors.text} text-lg py-1.5 px-3 font-bold`}>
                 {riskLevel}
               </Badge>
             </div>
             
             <div className="w-full mb-1">
-              <div className="flex justify-between text-xs mb-1">
-                <span>ESG Score</span>
-                <span className="font-medium">{progressScore.toFixed(0)}%</span>
+              <div className="flex justify-between text-sm mb-1">
+                <span className="font-medium">Risk Score</span>
+                <span className="font-bold">{progressScore.toFixed(0)}%</span>
               </div>
-              <Progress value={progressScore} className="h-2" />
+              <Progress value={progressScore} className="h-3" />
             </div>
             
             <div className="grid grid-cols-3 w-full mt-3 gap-2 text-center">

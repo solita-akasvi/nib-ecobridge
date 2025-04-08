@@ -20,7 +20,7 @@ export default function Navbar() {
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
                 <span className="text-primary-700 font-bold text-2xl cursor-pointer">
-                  ESG<span className="text-secondary-600">Impact</span>
+                  Eco<span className="text-secondary-600">Bridge</span>
                 </span>
               </Link>
             </div>

@@ -121,7 +121,7 @@ export default function ProjectPage() {
   return (
     <div className="container py-8 px-4 mx-auto">
       <div className="mb-6">
-        <Link href="/dashboard">
+        <Link href="/">
           <Button variant="ghost" className="pl-0">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Dashboard
