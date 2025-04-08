@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 45 33% 98%; /* light cream color */
+    --card: 45 33% 98%;
+    --popover: 45 33% 98%;
+  }
+
   * {
     @apply border-border;
   }
