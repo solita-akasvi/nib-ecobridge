@@ -181,7 +181,7 @@ export function RiskCategoryCard({
           </p>
           
           <div className="mt-4">
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion type="single" collapsible defaultValue={selectedMetric || ""} className="w-full">
               {metrics.map((metric) => (
                 <AccordionItem key={metric.id} value={metric.id} className="border rounded-md mb-2 overflow-hidden">
                   <AccordionTrigger className="px-4 py-2 hover:bg-slate-50 font-medium">
