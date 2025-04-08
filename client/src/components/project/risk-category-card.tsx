@@ -156,7 +156,23 @@ export function RiskCategoryCard({
                 )}
                 
                 {insights && (
-                  <div className="text-sm whitespace-pre-line">{insights}</div>
+                  <div className="text-sm space-y-2">
+                    {insights.split('\n').filter(line => line.trim() !== '').map((line, index) => {
+                      // Check if line has a colon to split into title and content
+                      const parts = line.split(':');
+                      if (parts.length > 1) {
+                        const title = parts[0].replace(/^[\s-]*/, '').trim(); // Remove leading dash if present
+                        const content = parts.slice(1).join(':').trim();
+                        return (
+                          <p key={index} className="ml-1">
+                            <span className="font-bold text-primary-700">{title}:</span> {content}
+                          </p>
+                        );
+                      }
+                      // If no colon or other format, just return the line
+                      return <p key={index} className="ml-1">{line.replace(/^[\s-]*/, '')}</p>;
+                    })}
+                  </div>
                 )}
               </div>
             </div>

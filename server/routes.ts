@@ -518,7 +518,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             messages: [
               {
                 role: "system", 
-                content: "You are an ESG (Environmental, Social, Governance) analyst providing extremely concise, actionable insights based on project metrics. Focus on specific, practical actions stakeholders can take to mitigate risks. Keep responses brief, direct and implementable."
+                content: "You are an ESG (Environmental, Social, Governance) analyst providing extremely concise, actionable insights based on project metrics. Focus on specific, practical actions stakeholders can take to mitigate risks. Format your response as bullet points with 3-4 specific actionable recommendations. For each bullet point, start with a bolded title followed by a colon and then a brief explanation. Each bullet point should be 15 words or less. DO NOT use markdown formatting like **Title**. Instead, structure each bullet like 'Title: Detail' where the title will be styled separately."
               },
               { role: "user", content: prompt }
             ],

@@ -19,7 +19,12 @@ export default function Navbar() {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <img src="/images/logo.png" alt="EcoBridge Logo" className="h-8" />
+                <div className="flex items-center">
+                  <img src="/images/logo.png" alt="EcoBridge Logo" className="h-8 w-auto transition-transform duration-200 ease-in-out hover:scale-105" onError={(e) => { 
+                    // Fallback if image doesn't load
+                    e.currentTarget.src = "/logo.png"; 
+                  }} />
+                </div>
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

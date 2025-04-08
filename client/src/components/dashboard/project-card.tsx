@@ -63,11 +63,23 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
-      <div className="h-48 overflow-hidden">
+      <div className="h-48 overflow-hidden bg-slate-100">
         <img 
-          className="h-full w-full object-cover" 
-          src={project.imageUrl} 
-          alt={project.name} 
+          className="h-full w-full object-cover transition-opacity duration-300" 
+          src={project.imageUrl || `/images/projects/${project.id}.jpg`} 
+          alt={project.name}
+          onError={(e) => {
+            // Try a different extension if the first one fails
+            const currentSrc = e.currentTarget.src;
+            if (currentSrc.endsWith('.jpg')) {
+              e.currentTarget.src = `/images/projects/${project.id}.png`;
+            } else if (currentSrc.endsWith('.png')) {
+              e.currentTarget.src = `/images/projects/${project.id}.svg`;
+            } else if (currentSrc.endsWith('.svg')) {
+              // Final fallback - a placeholder with the project category
+              e.currentTarget.src = `https://via.placeholder.com/800x450/e2e8f0/0f172a?text=${encodeURIComponent(project.category)}`;
+            }
+          }}
         />
       </div>
       

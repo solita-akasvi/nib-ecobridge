@@ -11,14 +11,16 @@ import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Dashboard} />
-      <Route path="/risk-assessment" component={RiskAssessment} />
-      <Route path="/project-gallery" component={ProjectGallery} />
-      <Route path="/resources" component={Resources} />
-      <Route path="/projects/:id" component={Project} />
-      <Route component={NotFound} />
-    </Switch>
+    <div className="page-transition">
+      <Switch>
+        <Route path="/" component={Dashboard} />
+        <Route path="/risk-assessment" component={RiskAssessment} />
+        <Route path="/project-gallery" component={ProjectGallery} />
+        <Route path="/resources" component={Resources} />
+        <Route path="/projects/:id" component={Project} />
+        <Route component={NotFound} />
+      </Switch>
+    </div>
   );
 }
 
