@@ -1,11 +1,14 @@
-import express, { type Express, Request, Response } from "express";
+import express, { type Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { db, client } from "./db";
+import { sql } from "drizzle-orm";
 import { z } from "zod";
 import { 
   insertProjectSchema, 
   insertRiskAssessmentSchema, 
-  insertBookmarkSchema 
+  insertBookmarkSchema,
+  riskAssessments 
 } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -141,27 +144,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Create a risk assessment
   apiRouter.post("/risk-assessments", async (req: Request, res: Response) => {
     try {
-      // For the new assessment model, we need to be more flexible
-      // Only validate projectId as required for now
-      const { projectId, assessment } = req.body;
+      // Get the data from the request body
+      const data = req.body;
       
-      if (!projectId || typeof projectId !== 'number') {
+      if (!data.projectId || typeof data.projectId !== 'number') {
         return res.status(400).json({ message: "Invalid or missing projectId" });
       }
       
       // Check if project exists
-      const project = await storage.getProjectById(projectId);
+      const project = await storage.getProjectById(data.projectId);
       if (!project) {
         return res.status(404).json({ message: "Project not found" });
       }
       
-      // Create the assessment with the new model data
-      const newAssessment = await storage.createRiskAssessment({ 
-        projectId, 
-        ...assessment
-      });
+      // Determine risk level from grade if not provided
+      const riskLevel = data.riskLevel || 
+        (data.overallGrade === 'A' ? 'Low' : 
+         data.overallGrade === 'B' ? 'Medium' : 
+         data.overallGrade === 'C' ? 'High' : 
+         data.overallGrade === 'D' ? 'Very High' : 'Medium');
       
-      return res.status(201).json(newAssessment);
+      // Use direct SQL query via execute_sql_tool instead
+      try {
+        // Use the db object from drizzle-orm for the query
+        const result = await db.execute(sql`
+          INSERT INTO risk_assessments (
+            project_id, 
+            risk_level,
+            project_type, 
+            energy_use, 
+            resource_use, 
+            pollution_waste, 
+            biodiversity_impact, 
+            climate_risk, 
+            labor_practices, 
+            community_impact, 
+            human_rights, 
+            responsible_operation, 
+            corruption_ethics, 
+            overall_grade, 
+            overall_score, 
+            overall_notes
+          ) VALUES (
+            ${data.projectId}, 
+            ${riskLevel},
+            ${data.projectType}, 
+            ${data.energyUse}, 
+            ${data.resourceUse}, 
+            ${data.pollutionWaste}, 
+            ${data.biodiversityImpact}, 
+            ${data.climateRisk}, 
+            ${data.laborPractices}, 
+            ${data.communityImpact}, 
+            ${data.humanRights}, 
+            ${data.responsibleOperation}, 
+            ${data.corruptionEthics}, 
+            ${data.overallGrade}, 
+            ${data.overallScore}, 
+            ${data.overallNotes}
+          ) RETURNING *
+        `);
+        
+        // Extract assessment from result array
+        const assessment = result[0];
+        
+        if (assessment) {
+          // TypeScript safety: cast assessment to any to access properties
+          const typedAssessment = assessment as any;
+          
+          // Update the project with the risk assessment data
+          await storage.updateProject(project.id, {
+            riskScore: typedAssessment.overall_score ? Number(typedAssessment.overall_score) * 25 : 0,
+            riskLevel: typedAssessment.risk_level as string
+          });
+        }
+        
+        return res.status(201).json(assessment);
+      } catch (sqlError) {
+        console.error("SQL Error creating risk assessment:", sqlError);
+        return res.status(500).json({ message: "Error creating risk assessment in database" });
+      }
     } catch (error) {
       console.error("Error creating risk assessment:", error);
       return res.status(500).json({ message: "Error creating risk assessment" });

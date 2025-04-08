@@ -1,19 +1,15 @@
-import {
-  users,
-  projects,
-  riskAssessments,
-  bookmarks,
-  type User,
-  type InsertUser,
-  type Project,
-  type InsertProject,
-  type RiskAssessment,
-  type InsertRiskAssessment,
-  type Bookmark,
-  type InsertBookmark
+import { db, client } from "./db";
+import { eq, and, desc } from "drizzle-orm";
+import { 
+  User, Project, RiskAssessment, Bookmark, 
+  InsertUser, InsertProject, InsertRiskAssessment, InsertBookmark, 
+  users, projects, riskAssessments, bookmarks 
 } from "@shared/schema";
 
 export interface IStorage {
+  // Database client for direct SQL queries
+  client: any;
+  
   // User Operations
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
@@ -41,279 +37,126 @@ export interface IStorage {
   isProjectBookmarked(userId: number, projectId: number): Promise<boolean>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private projects: Map<number, Project>;
-  private riskAssessments: Map<number, RiskAssessment>;
-  private bookmarks: Map<number, Bookmark>;
+// Database Storage implementation
+export class DatabaseStorage implements IStorage {
+  // Expose client for direct SQL queries
+  client = client;
   
-  private userIdCounter: number;
-  private projectIdCounter: number;
-  private riskAssessmentIdCounter: number;
-  private bookmarkIdCounter: number;
-
-  constructor() {
-    this.users = new Map();
-    this.projects = new Map();
-    this.riskAssessments = new Map();
-    this.bookmarks = new Map();
-    
-    this.userIdCounter = 1;
-    this.projectIdCounter = 1;
-    this.riskAssessmentIdCounter = 1;
-    this.bookmarkIdCounter = 1;
-    
-    // Initialize with sample data
-    this.initializeSampleData();
-  }
-
-  private initializeSampleData(): void {
-    // Sample projects with mock data - this is initialization, not mock data
-    const sampleProjects: InsertProject[] = [
-      {
-        name: "Grootvlei Solar Power Project",
-        description: "A 75MW solar PV installation providing clean energy to over 45,000 households in Western Cape.",
-        country: "South Africa",
-        region: "Western Cape",
-        category: "Renewable Energy",
-        size: "Large ($10M - $50M)",
-        funding: "$18.5M",
-        environmentGrade: "A+",
-        socialGrade: "B",
-        governanceGrade: "A",
-        riskScore: 28,
-        riskLevel: "Low",
-        imageUrl: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        contactInfo: "contact@grootvleiproject.co.za",
-        details: {
-          impact: "Reduces CO2 emissions by 120,000 tons annually",
-          timeline: "2022-2025",
-          partners: ["SolarTech SA", "Green Energy Fund", "Western Cape Government"]
-        }
-      },
-      {
-        name: "Lake Turkana Wind Power",
-        description: "Kenya's largest wind farm with 365 turbines generating 310MW of low-cost renewable energy.",
-        country: "Kenya",
-        region: "Lake Turkana",
-        category: "Renewable Energy",
-        size: "Extra Large (> $50M)",
-        funding: "$78M",
-        environmentGrade: "A",
-        socialGrade: "C",
-        governanceGrade: "B",
-        riskScore: 54,
-        riskLevel: "Medium",
-        imageUrl: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        contactInfo: "info@ltwp.co.ke",
-        details: {
-          impact: "Provides 17% of Kenya's installed capacity",
-          timeline: "2020-2024",
-          partners: ["KenGen", "African Development Bank", "EU-Africa Infrastructure Trust Fund"]
-        }
-      },
-      {
-        name: "Ghana Forest Restoration Initiative",
-        description: "Reforestation of 10,000 hectares of degraded forest land in Western Ghana using native species.",
-        country: "Ghana",
-        region: "Western Region",
-        category: "Conservation",
-        size: "Medium ($1M - $10M)",
-        funding: "$5.2M",
-        environmentGrade: "A+",
-        socialGrade: "B+",
-        governanceGrade: "C",
-        riskScore: 47,
-        riskLevel: "Medium",
-        imageUrl: "https://images.unsplash.com/photo-1507767439269-2c64f106bb56?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        contactInfo: "ghanaforests@environment.gov.gh",
-        details: {
-          impact: "Carbon sequestration of 45,000 tons annually",
-          timeline: "2023-2028",
-          partners: ["Ghana Forestry Commission", "Global Environment Facility", "Local Communities"]
-        }
-      },
-      {
-        name: "Namibia Water Harvesting Project",
-        description: "Innovative water collection and conservation systems across 18 rural communities in central Namibia.",
-        country: "Namibia",
-        region: "Central Regions",
-        category: "Water Management",
-        size: "Medium ($1M - $10M)",
-        funding: "$3.7M",
-        environmentGrade: "A",
-        socialGrade: "B",
-        governanceGrade: "D",
-        riskScore: 68,
-        riskLevel: "High",
-        imageUrl: "https://images.unsplash.com/photo-1615288030286-5276cba7121d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        contactInfo: "water@namibia-environment.org",
-        details: {
-          impact: "Improved water access for 12,000 people",
-          timeline: "2022-2025",
-          partners: ["Namibia Water Corporation", "UNDP", "Rural Development Agency"]
-        }
-      },
-      {
-        name: "Kenya Climate-Smart Agriculture",
-        description: "Teaching 6,500 smallholder farmers climate-resilient agricultural practices across 4 counties.",
-        country: "Kenya",
-        region: "Multiple Counties",
-        category: "Sustainable Agriculture",
-        size: "Medium ($1M - $10M)",
-        funding: "$2.8M",
-        environmentGrade: "A",
-        socialGrade: "A",
-        governanceGrade: "B+",
-        riskScore: 32,
-        riskLevel: "Low",
-        imageUrl: "https://images.unsplash.com/photo-1623227483531-d0ea60069369?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        contactInfo: "smartagri@kenya.org",
-        details: {
-          impact: "30% increase in crop yields with 40% less water",
-          timeline: "2021-2024",
-          partners: ["Kenya Agricultural Research Institute", "World Bank", "FAO"]
-        }
-      },
-      {
-        name: "Lagos Community Biogas Initiative",
-        description: "Converting organic waste into clean cooking gas for 12 communities in Lagos State's urban areas.",
-        country: "Nigeria",
-        region: "Lagos State",
-        category: "Renewable Energy",
-        size: "Small (< $1M)",
-        funding: "$1.2M",
-        environmentGrade: "A",
-        socialGrade: "A",
-        governanceGrade: "C",
-        riskScore: 58,
-        riskLevel: "Medium",
-        imageUrl: "https://images.unsplash.com/photo-1534531173927-aeb928d54385?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-        contactInfo: "biogas@lagosenergy.org",
-        details: {
-          impact: "Reduces indoor air pollution for 3,500 households",
-          timeline: "2022-2024",
-          partners: ["Lagos Waste Management Authority", "Energy Commission of Nigeria", "Community Leaders"]
-        }
-      }
-    ];
-
-    // Create projects
-    sampleProjects.forEach(project => {
-      this.createProject(project);
-    });
-
-    // Create risk assessments for each project
-    const projectIds = Array.from(this.projects.keys());
-    
-    const riskAssessment: InsertRiskAssessment = {
-      projectId: 1,
-      politicalRisk: 56,
-      environmentalRisk: 28,
-      socialRisk: 48,
-      regulatoryRisk: 72,
-      supplyChainRisk: 51,
-      overallRisk: 51,
-      riskLevel: "Medium",
-      politicalNotes: "Government stability concerns, moderate corruption index",
-      environmentalNotes: "Minimal biodiversity concerns, low water stress area",
-      socialNotes: "Some land rights issues, potential job displacement concerns",
-      regulatoryNotes: "Complex permitting process, changing energy regulations",
-      supplyChainNotes: "Port congestion issues, moderate infrastructure quality",
-      overallNotes: "This project presents a moderate overall risk with significant challenges in regulatory compliance. Key recommendations include engaging early with regulatory authorities and developing a strong community engagement plan."
-    };
-    
-    this.createRiskAssessment(riskAssessment);
-  }
-
   // User Operations
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.userIdCounter++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
     return user;
   }
 
   // Project Operations
   async getProjects(): Promise<Project[]> {
-    return Array.from(this.projects.values());
+    return await db.select().from(projects).orderBy(desc(projects.createdAt));
   }
 
   async getProjectById(id: number): Promise<Project | undefined> {
-    return this.projects.get(id);
+    const [project] = await db.select().from(projects).where(eq(projects.id, id));
+    return project || undefined;
   }
 
   async getProjectsByCountry(country: string): Promise<Project[]> {
-    return Array.from(this.projects.values()).filter(
-      (project) => project.country === country
-    );
+    return await db.select().from(projects).where(eq(projects.country, country));
   }
 
   async getProjectsByCategory(category: string): Promise<Project[]> {
-    return Array.from(this.projects.values()).filter(
-      (project) => project.category === category
-    );
+    return await db.select().from(projects).where(eq(projects.category, category));
   }
 
   async getProjectsByRiskLevel(riskLevel: string): Promise<Project[]> {
-    return Array.from(this.projects.values()).filter(
-      (project) => project.riskLevel === riskLevel
-    );
+    return await db.select().from(projects).where(eq(projects.riskLevel, riskLevel));
   }
 
   async createProject(insertProject: InsertProject): Promise<Project> {
-    const id = this.projectIdCounter++;
-    const createdAt = new Date();
-    const project: Project = { ...insertProject, id, createdAt };
-    this.projects.set(id, project);
+    const [project] = await db
+      .insert(projects)
+      .values(insertProject)
+      .returning();
     return project;
   }
 
   async updateProject(id: number, updateData: Partial<InsertProject>): Promise<Project | undefined> {
-    const project = this.projects.get(id);
-    if (!project) return undefined;
-
-    const updatedProject = { ...project, ...updateData };
-    this.projects.set(id, updatedProject);
-    return updatedProject;
+    const [updatedProject] = await db
+      .update(projects)
+      .set(updateData)
+      .where(eq(projects.id, id))
+      .returning();
+    return updatedProject || undefined;
   }
 
   async deleteProject(id: number): Promise<boolean> {
-    return this.projects.delete(id);
+    const [deletedProject] = await db
+      .delete(projects)
+      .where(eq(projects.id, id))
+      .returning();
+    return !!deletedProject;
   }
 
   // Risk Assessment Operations
   async getRiskAssessmentsByProjectId(projectId: number): Promise<RiskAssessment | undefined> {
-    return Array.from(this.riskAssessments.values()).find(
-      (assessment) => assessment.projectId === projectId
-    );
+    const [assessment] = await db
+      .select()
+      .from(riskAssessments)
+      .where(eq(riskAssessments.projectId, projectId));
+    return assessment || undefined;
   }
 
   async createRiskAssessment(insertAssessment: InsertRiskAssessment): Promise<RiskAssessment> {
-    const id = this.riskAssessmentIdCounter++;
-    const createdAt = new Date();
-    const assessment: RiskAssessment = { ...insertAssessment, id, createdAt };
-    this.riskAssessments.set(id, assessment);
+    console.log("Creating risk assessment with data:", JSON.stringify(insertAssessment, null, 2));
     
-    // Update the associated project with the risk score and level
-    const project = this.projects.get(assessment.projectId);
-    if (project) {
-      // Handle both old and new risk assessment models
-      if ('overallRisk' in assessment) {
-        project.riskScore = assessment.overallRisk;
-        project.riskLevel = assessment.riskLevel;
-      } else if ('overallScore' in assessment) {
-        project.riskScore = assessment.overallScore * 25; // Scale to 0-100 for compatibility
+    // Ensure riskLevel is set (required by database schema)
+    if (!insertAssessment.riskLevel) {
+      // Map from overall grade if available
+      if (insertAssessment.overallGrade) {
+        const gradeToLevel: Record<string, string> = {
+          "A": "Low",
+          "B": "Medium",
+          "C": "High",
+          "D": "Very High"
+        };
+        insertAssessment.riskLevel = gradeToLevel[insertAssessment.overallGrade] || "Medium";
+      } else {
+        insertAssessment.riskLevel = "Medium"; // Default value
+      }
+      console.log("Set riskLevel to:", insertAssessment.riskLevel);
+    }
+    
+    // Ensure we're passing the correct data structure to the database
+    const assessmentData = {
+      ...insertAssessment,
+      riskLevel: insertAssessment.riskLevel || "Medium" // Explicitly set default if still missing
+    };
+    
+    console.log("Final assessment data:", JSON.stringify(assessmentData, null, 2));
+    
+    const [assessment] = await db
+      .insert(riskAssessments)
+      .values(assessmentData)
+      .returning();
+    
+    // Update the associated project with risk information
+    if (assessment) {
+      const project = await this.getProjectById(assessment.projectId);
+      if (project) {
+        const updateData: Partial<InsertProject> = {
+          riskScore: assessment.overallScore ? assessment.overallScore * 25 : 0, // Scale to 0-100 for compatibility
+        };
         
         // Map grades to risk levels for compatibility
         const gradeToLevel: Record<string, string> = {
@@ -323,85 +166,103 @@ export class MemStorage implements IStorage {
           "D": "Very High"
         };
         
-        project.riskLevel = assessment.overallGrade ? gradeToLevel[assessment.overallGrade] || "Medium" : "Medium";
+        updateData.riskLevel = assessment.overallGrade ? gradeToLevel[assessment.overallGrade] || "Medium" : "Medium";
+        
+        // Update environmental grade if available
+        if (assessment.energyUse || assessment.resourceUse || assessment.pollutionWaste || 
+            assessment.biodiversityImpact || assessment.climateRisk) {
+          // Use the first available environmental grade
+          const envGrades = [
+            assessment.energyUse, 
+            assessment.resourceUse, 
+            assessment.pollutionWaste,
+            assessment.biodiversityImpact,
+            assessment.climateRisk
+          ].filter(Boolean);
+          
+          if (envGrades.length > 0) {
+            updateData.environmentGrade = envGrades[0];
+          }
+        }
+        
+        // Update social grade if available
+        if (assessment.laborPractices || assessment.communityImpact || assessment.humanRights) {
+          const socialGrades = [
+            assessment.laborPractices,
+            assessment.communityImpact,
+            assessment.humanRights
+          ].filter(Boolean);
+          
+          if (socialGrades.length > 0) {
+            updateData.socialGrade = socialGrades[0];
+          }
+        }
+        
+        // Update governance grade if available
+        if (assessment.responsibleOperation || assessment.corruptionEthics) {
+          const govGrades = [
+            assessment.responsibleOperation,
+            assessment.corruptionEthics
+          ].filter(Boolean);
+          
+          if (govGrades.length > 0) {
+            updateData.governanceGrade = govGrades[0];
+          }
+        }
+        
+        await this.updateProject(project.id, updateData);
       }
-      
-      // Update environmental, social, and governance grades based on assessment if available
-      if ('energyUse' in assessment) {
-        // Calculate average environmental grade from available fields
-        const envGrades = [
-          assessment.energyUse, 
-          assessment.resourceUse, 
-          assessment.pollutionWaste,
-          assessment.biodiversityImpact,
-          assessment.climateRisk
-        ].filter(Boolean);
-        
-        if (envGrades.length > 0) {
-          project.environmentGrade = envGrades[0];
-        }
-        
-        // Use a representative social grade
-        const socialGrades = [
-          assessment.laborPractices,
-          assessment.communityImpact,
-          assessment.humanRights
-        ].filter(Boolean);
-        
-        if (socialGrades.length > 0) {
-          project.socialGrade = socialGrades[0];
-        }
-        
-        // Use a representative governance grade
-        const govGrades = [
-          assessment.responsibleOperation,
-          assessment.corruptionEthics
-        ].filter(Boolean);
-        
-        if (govGrades.length > 0) {
-          project.governanceGrade = govGrades[0];
-        }
-      }
-      
-      this.projects.set(project.id, project);
     }
     
     return assessment;
   }
 
   async updateRiskAssessment(id: number, updateData: Partial<InsertRiskAssessment>): Promise<RiskAssessment | undefined> {
-    const assessment = this.riskAssessments.get(id);
-    if (!assessment) return undefined;
-
-    const updatedAssessment = { ...assessment, ...updateData };
-    this.riskAssessments.set(id, updatedAssessment);
-    return updatedAssessment;
+    const [updatedAssessment] = await db
+      .update(riskAssessments)
+      .set(updateData)
+      .where(eq(riskAssessments.id, id))
+      .returning();
+    return updatedAssessment || undefined;
   }
 
   // Bookmark Operations
   async getBookmarksByUserId(userId: number): Promise<Bookmark[]> {
-    return Array.from(this.bookmarks.values()).filter(
-      (bookmark) => bookmark.userId === userId
-    );
+    return await db
+      .select()
+      .from(bookmarks)
+      .where(eq(bookmarks.userId, userId));
   }
 
   async createBookmark(insertBookmark: InsertBookmark): Promise<Bookmark> {
-    const id = this.bookmarkIdCounter++;
-    const createdAt = new Date();
-    const bookmark: Bookmark = { ...insertBookmark, id, createdAt };
-    this.bookmarks.set(id, bookmark);
+    const [bookmark] = await db
+      .insert(bookmarks)
+      .values(insertBookmark)
+      .returning();
     return bookmark;
   }
 
   async deleteBookmark(id: number): Promise<boolean> {
-    return this.bookmarks.delete(id);
+    const [deletedBookmark] = await db
+      .delete(bookmarks)
+      .where(eq(bookmarks.id, id))
+      .returning();
+    return !!deletedBookmark;
   }
 
   async isProjectBookmarked(userId: number, projectId: number): Promise<boolean> {
-    return Array.from(this.bookmarks.values()).some(
-      (bookmark) => bookmark.userId === userId && bookmark.projectId === projectId
-    );
+    const [bookmark] = await db
+      .select()
+      .from(bookmarks)
+      .where(
+        and(
+          eq(bookmarks.userId, userId),
+          eq(bookmarks.projectId, projectId)
+        )
+      );
+    return !!bookmark;
   }
 }
 
-export const storage = new MemStorage();
+// Export an instance of the DatabaseStorage class
+export const storage = new DatabaseStorage();
