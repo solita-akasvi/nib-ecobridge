@@ -19,7 +19,7 @@ export default function Navbar() {
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
-                <img src="/assets/Logo.png" alt="EcoBridge Logo" className="h-8" />
+                <img src="/images/logo.png" alt="EcoBridge Logo" className="h-8" />
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
