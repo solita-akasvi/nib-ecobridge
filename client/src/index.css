@@ -8,20 +8,7 @@
   }
 
   body {
-    @apply font-sans antialiased bg-green-50 text-foreground;
-  }
-  
-  /* Custom green theme styling */
-  .bg-gradient-eco {
-    @apply bg-gradient-to-br from-green-100 to-green-200;
-  }
-  
-  .text-eco-emphasis {
-    @apply text-green-800;
-  }
-  
-  .border-eco {
-    @apply border-green-200;
+    @apply font-sans antialiased bg-background text-foreground;
   }
 }
 

@@ -62,8 +62,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   };
   
   return (
-    <Card className="overflow-hidden hover:shadow-md transition-shadow border-green-100">
-      <div className="h-48 overflow-hidden bg-green-50">
+    <Card className="overflow-hidden hover:shadow-md transition-shadow">
+      <div className="h-48 overflow-hidden bg-slate-100">
         <img 
           className="h-full w-full object-cover transition-opacity duration-300" 
           src={project.imageUrl || `/images/projects/${project.id}.jpg`} 
@@ -77,13 +77,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               e.currentTarget.src = `/images/projects/${project.id}.svg`;
             } else if (currentSrc.endsWith('.svg')) {
               // Final fallback - a placeholder with the project category
-              e.currentTarget.src = `https://via.placeholder.com/800x450/ecfdf5/065f46?text=${encodeURIComponent(project.category)}`;
+              e.currentTarget.src = `https://via.placeholder.com/800x450/e2e8f0/0f172a?text=${encodeURIComponent(project.category)}`;
             }
           }}
         />
       </div>
       
-      <CardContent className="p-5 bg-gradient-eco">
+      <CardContent className="p-5">
         <div className="flex items-center justify-between mb-3">
           <Badge className={`${categoryColors.bg} ${categoryColors.text}`}>
             {project.category}
@@ -93,10 +93,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </Badge>
         </div>
         
-        <h3 className="text-lg font-medium text-eco-emphasis mb-1">{project.name}</h3>
-        <p className="text-sm text-green-800 mb-3">{project.description}</p>
+        <h3 className="text-lg font-medium text-neutral-900 mb-1">{project.name}</h3>
+        <p className="text-sm text-neutral-700 mb-3">{project.description}</p>
         
-        <div className="flex items-center text-xs text-green-700 mb-4">
+        <div className="flex items-center text-xs text-neutral-500 mb-4">
           <span className="flex items-center mr-4">
             <svg className="h-3 w-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
@@ -114,48 +114,34 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
         
         <div className="grid grid-cols-3 gap-2 mb-4">
-          <div className="text-center p-2 bg-green-100 rounded border border-green-300">
-            <div className={`text-lg font-semibold ${
-              project.environmentGrade === 'A' ? 'text-green-600' :
-              project.environmentGrade === 'B' ? 'text-blue-600' :
-              project.environmentGrade === 'C' ? 'text-yellow-600' :
-              project.environmentGrade === 'D' ? 'text-red-600' :
-              'text-gray-500'
-            }`}>
+          <div className="text-center p-2 bg-neutral-50 rounded">
+            <div className={`text-lg font-semibold text-secondary-600`}>
               {project.environmentGrade || 'N/A'}
             </div>
-            <div className="text-xs text-green-700">Environment</div>
+            <div className="text-xs text-neutral-500">Environment</div>
           </div>
-          <div className="text-center p-2 bg-green-100 rounded border border-green-300">
-            <div className={`text-lg font-semibold ${
-              project.socialGrade === 'A' ? 'text-green-600' :
-              project.socialGrade === 'B' ? 'text-blue-600' :
-              project.socialGrade === 'C' ? 'text-yellow-600' :
-              project.socialGrade === 'D' ? 'text-red-600' :
-              'text-gray-500'
-            }`}>
+          <div className="text-center p-2 bg-neutral-50 rounded">
+            <div className={`text-lg font-semibold ${project.socialGrade === 'C' ? 'text-yellow-600' : 'text-primary-600'}`}>
               {project.socialGrade || 'N/A'}
             </div>
-            <div className="text-xs text-green-700">Social</div>
+            <div className="text-xs text-neutral-500">Social</div>
           </div>
-          <div className="text-center p-2 bg-green-100 rounded border border-green-300">
+          <div className="text-center p-2 bg-neutral-50 rounded">
             <div className={`text-lg font-semibold ${
-              project.governanceGrade === 'A' ? 'text-green-600' :
-              project.governanceGrade === 'B' ? 'text-blue-600' :
-              project.governanceGrade === 'C' ? 'text-yellow-600' :
-              project.governanceGrade === 'D' ? 'text-red-600' :
-              'text-gray-500'
+              project.governanceGrade === 'D' ? 'text-red-600' : 
+              project.governanceGrade === 'C' ? 'text-yellow-600' : 
+              'text-primary-600'
             }`}>
               {project.governanceGrade || 'N/A'}
             </div>
-            <div className="text-xs text-green-700">Governance</div>
+            <div className="text-xs text-neutral-500">Governance</div>
           </div>
         </div>
         
         <div className="flex space-x-2">
           <Button 
             variant="outline" 
-            className="flex-1 flex items-center justify-center border-green-600 text-green-700 hover:bg-green-50"
+            className="flex-1 flex items-center justify-center"
             onClick={handleSave}
             disabled={isBookmarked || bookmarkMutation.isPending}
           >
@@ -163,7 +149,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             {isBookmarked ? "Saved" : "Save"}
           </Button>
           <Link href={`/projects/${project.id}`}>
-            <Button className="flex-1 flex items-center justify-center bg-green-700 hover:bg-green-800">
+            <Button className="flex-1 flex items-center justify-center">
               <Info className="mr-1.5 h-4 w-4" />
               Details
             </Button>

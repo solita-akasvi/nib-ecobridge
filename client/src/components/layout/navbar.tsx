@@ -13,14 +13,14 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-gradient-to-r from-green-700 to-green-900 shadow-md">
+    <nav className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
                 <div className="flex items-center">
-                  <img src="/images/logo.png" alt="EcoBridge Logo" className="h-10 w-auto transition-transform duration-200 ease-in-out hover:scale-105" onError={(e) => { 
+                  <img src="/images/logo.png" alt="EcoBridge Logo" className="h-8 w-auto transition-transform duration-200 ease-in-out hover:scale-105" onError={(e) => { 
                     // Fallback if image doesn't load
                     e.currentTarget.src = "/logo.png"; 
                   }} />
@@ -34,8 +34,8 @@ export default function Navbar() {
                     className={cn(
                       "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer",
                       location === item.path
-                        ? "border-green-300 text-white"
-                        : "border-transparent text-green-100 hover:border-green-200 hover:text-white"
+                        ? "border-primary-500 text-neutral-900"
+                        : "border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700"
                     )}
                   >
                     {item.name}
@@ -45,23 +45,23 @@ export default function Navbar() {
             </div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <button className="p-1 rounded-full text-green-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-800 focus:ring-white">
+            <button className="bg-white p-1 rounded-full text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
               <span className="sr-only">View notifications</span>
               <Bell className="h-6 w-6" />
             </button>
             <div className="ml-3 relative">
               <div>
-                <button className="rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-800 focus:ring-white">
+                <button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                   <span className="sr-only">Open user menu</span>
-                  <div className="h-8 w-8 rounded-full bg-green-200 flex items-center justify-center">
-                    <span className="font-medium text-green-800">JD</span>
+                  <div className="h-8 w-8 rounded-full bg-primary-200 flex items-center justify-center">
+                    <span className="font-medium text-primary-700">JD</span>
                   </div>
                 </button>
               </div>
             </div>
           </div>
           <div className="-mr-2 flex items-center sm:hidden">
-            <button className="inline-flex items-center justify-center p-2 rounded-md text-green-200 hover:text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            <button className="inline-flex items-center justify-center p-2 rounded-md text-neutral-400 hover:text-neutral-500 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
               <span className="sr-only">Open main menu</span>
               <svg
                 className="h-6 w-6"
