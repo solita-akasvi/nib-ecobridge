@@ -1,0 +1,69 @@
+Project Overview
+Build a web-based ESG risk assessment tool and project gallery tailored for Global South countries (e.g., South Africa, Namibia, Kenya, etc.). The tool helps local governments, NGOs, and infrastructure developers assess risks related to green/ESG-aligned projects (e.g., wind farms, solar parks, reforestation), while enabling investors/donors to filter and discover vetted opportunities.
+
+🎯 Key Features
+1. ESG Risk Assessment Tool
+Users input a proposed project (e.g., “Wind farm in Eastern Cape, South Africa”).
+
+The app returns a dynamic risk profile including:
+
+Political risk (e.g., instability, corruption)
+
+Environmental risk (e.g., drought, biodiversity conflict)
+
+Social/community risk (e.g., displacement, local resistance)
+
+Regulatory/permits risk
+
+Supply chain/logistics risk
+
+Includes country-specific data overlays and considerations.
+
+2. Project Gallery for Investors/Donors
+A curated list of ESG-aligned projects with filters:
+
+Country, region, ESG category, risk score, project size, funding needs.
+
+Each project card includes:
+
+Summary, ESG impact, risk assessment, needed funding, contact details.
+
+Option for investors to bookmark or request more info.
+
+3. Optional: Scraping Module (Experimental)
+Backend script that pulls ESG-related infrastructure project data from:
+
+Government websites
+
+NGO platforms (e.g., UNDP, World Bank project portals)
+
+Local news or open data APIs
+
+Use scraping sparingly or offer a mock version for now (e.g., simulate results from sample projects if scraping is out of scope).
+
+💡 Bonus Ideas
+Integration with map view for geospatial risk overlays.
+
+AI-assisted project summarizer: Paste in a project doc, get ESG + risk summary.
+
+Investor dashboard: Track saved projects and risk levels.
+
+🧰 Tech Stack Suggestions
+Frontend: React or Svelte + Tailwind CSS
+
+Backend: Node.js / Python Flask (for risk engine)
+
+Scraping (optional): Python + BeautifulSoup or Scrapy
+
+Data: Use public ESG datasets (World Bank, UNDP, ND-GAIN, etc.)
+
+Database: Supabase or Firebase for MVP
+
+🧠 AI Usage (Optional)
+Use OpenAI/GPT-4 to:
+
+Parse project descriptions and output ESG risks.
+
+Generate a summary and risk insights.
+
+Translate local reports or project docs to English if needed
