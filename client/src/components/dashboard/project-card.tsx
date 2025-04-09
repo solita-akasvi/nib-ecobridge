@@ -66,18 +66,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <div className="h-48 overflow-hidden bg-slate-100">
         <img 
           className="h-full w-full object-cover transition-opacity duration-300" 
-          src={project.imageUrl || `/images/projects/${project.id}.jpg`} 
+          src={project.imageUrl || `/images/projects/${project.id}.svg`} 
           alt={project.name}
           onError={(e) => {
-            // Try a different extension if the first one fails
-            const currentSrc = e.currentTarget.src;
-            if (currentSrc.endsWith('.jpg')) {
-              e.currentTarget.src = `/images/projects/${project.id}.png`;
-            } else if (currentSrc.endsWith('.png')) {
-              e.currentTarget.src = `/images/projects/${project.id}.svg`;
-            } else if (currentSrc.endsWith('.svg')) {
-              // Final fallback - a placeholder with the project category
+            if (e.currentTarget && e.currentTarget.src) {
+              // Use a simple placeholder as fallback
               e.currentTarget.src = `https://via.placeholder.com/800x450/e2e8f0/0f172a?text=${encodeURIComponent(project.category)}`;
+              // Remove error handler to prevent infinite loop
+              e.currentTarget.onerror = null;
             }
           }}
         />
