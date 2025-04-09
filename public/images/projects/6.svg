@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#FBF6E9"/>
+  
+  <!-- Desert texture -->
+  <rect y="200" width="600" height="200" fill="#E8D4AF"/>
+  <path d="M0 200 L600 200 L600 220 Q550 210 500 220 Q450 230 400 215 Q350 200 300 225 Q250 250 200 220 Q150 190 100 210 Q50 230 0 210 Z" fill="#E8D4AF"/>
+  
+  <!-- Solar panels field -->
+  <g transform="translate(50, 250)">
+    <!-- Row 1 -->
+    <rect x="0" y="0" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    <rect x="100" y="0" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    <rect x="200" y="0" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    <rect x="300" y="0" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    <rect x="400" y="0" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    
+    <!-- Row 2 -->
+    <rect x="0" y="70" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    <rect x="100" y="70" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    <rect x="200" y="70" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    <rect x="300" y="70" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+    <rect x="400" y="70" width="80" height="60" fill="#2D5B9D" stroke="#1A365D" stroke-width="2"/>
+  </g>
+  
+  <!-- Solar tower -->
+  <rect x="280" y="60" width="40" height="140" fill="#E0E0E0" stroke="#A0A0A0" stroke-width="2"/>
+  <ellipse cx="300" cy="60" rx="30" ry="30" fill="#F8D57E" stroke="#E8A317" stroke-width="2"/>
+  <ellipse cx="300" cy="60" rx="20" ry="20" fill="#FFF1B0" stroke="#E8A317" stroke-width="1"/>
+  
+  <!-- Sun rays -->
+  <g stroke="#F8D57E" stroke-width="3">
+    <line x1="300" y1="10" x2="300" y2="25" />
+    <line x1="265" y1="25" x2="275" y2="35" />
+    <line x1="335" y1="25" x2="325" y2="35" />
+    <line x1="250" y1="60" x2="265" y2="60" />
+    <line x1="350" y1="60" x2="335" y2="60" />
+    <line x1="265" y1="95" x2="275" y2="85" />
+  </g>
+  
+  <!-- Sun -->
+  <circle cx="100" cy="80" r="40" fill="#FDB813"/>
+  <circle cx="100" cy="80" r="30" fill="#FFCB4C"/>
+  
+  <!-- Sky glow -->
+  <path d="M0 200 Q150 170 300 180 Q450 190 600 170 L600 0 L0 0 Z" fill="url(#skyGradient)" opacity="0.6"/>
+  
+  <!-- Definitions -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#87CEEB" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FDB813" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Title -->
+  <text x="300" y="30" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#1A365D">Ouarzazate Solar Power Station (Noor)</text>
+  <text x="300" y="340" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#1A365D">Morocco's 580MW Concentrated Solar Power Plant</text>
+</svg>
