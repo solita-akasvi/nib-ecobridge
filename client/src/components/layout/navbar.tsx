@@ -20,9 +20,11 @@ export default function Navbar() {
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
                 <div className="flex items-center">
-                  <div className="h-10 w-auto flex items-center justify-center bg-primary-600 text-white px-4 rounded-md font-bold text-lg transition-transform duration-200 ease-in-out hover:scale-105">
-                    EcoBridge
-                  </div>
+                  <img 
+                    src="/logo.png" 
+                    alt="EcoBridge Logo" 
+                    className="h-10 w-auto transition-transform duration-200 ease-in-out hover:scale-105" 
+                  />
                 </div>
               </Link>
             </div>
