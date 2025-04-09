@@ -66,14 +66,21 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <div className="h-48 overflow-hidden bg-slate-100">
         <img 
           className="h-full w-full object-cover transition-opacity duration-300" 
-          src={project.imageUrl || `/images/projects/${project.id}.svg`} 
+          src={project.imageUrl} 
           alt={project.name}
+          loading="eager"
           onError={(e) => {
-            if (e.currentTarget && e.currentTarget.src) {
-              // Use a simple placeholder as fallback
-              e.currentTarget.src = `https://via.placeholder.com/800x450/e2e8f0/0f172a?text=${encodeURIComponent(project.category)}`;
-              // Remove error handler to prevent infinite loop
-              e.currentTarget.onerror = null;
+            if (e.currentTarget) {
+              // Prevent blinking by setting opacity to 0 first
+              e.currentTarget.style.opacity = '0';
+              // Use a placeholder showing the project category
+              setTimeout(() => {
+                if (e.currentTarget) {
+                  e.currentTarget.src = `https://via.placeholder.com/800x450/e2e8f0/0f172a?text=${encodeURIComponent(project.category)}`;
+                  e.currentTarget.style.opacity = '1';
+                  e.currentTarget.onerror = null;
+                }
+              }, 100);
             }
           }}
         />
