@@ -1,0 +1,34 @@
+We'll use reliable placeholders from placehold.co that always work:
+
+1. Ouarzazate Solar Power Station (Noor), Morocco:
+https://placehold.co/800x450/4a90e2/FFFFFF.jpg?text=Ouarzazate+Solar+Power+Station
+
+2. Olkaria Solar Manufacturing Park:
+https://placehold.co/800x450/4CAF50/FFFFFF.jpg?text=Olkaria+Solar+Manufacturing+Park
+
+3. Riverine Gold Extraction Project:
+https://placehold.co/800x450/FFC107/FFFFFF.jpg?text=Riverine+Gold+Extraction+Project
+
+4. Artisanal Mining Modernization:
+https://placehold.co/800x450/795548/FFFFFF.jpg?text=Artisanal+Mining+Modernization
+
+5. Lake Turkana Wind Power:
+https://placehold.co/800x450/2196F3/FFFFFF.jpg?text=Lake+Turkana+Wind+Power
+
+6. Grootvlei Solar Power Project:
+https://placehold.co/800x450/FF5722/FFFFFF.jpg?text=Grootvlei+Solar+Power+Project
+
+7. Nairobi Waste Management Facility:
+https://placehold.co/800x450/9C27B0/FFFFFF.jpg?text=Nairobi+Waste+Management+Facility
+
+8. Lagos Urban Transport System:
+https://placehold.co/800x450/607D8B/FFFFFF.jpg?text=Lagos+Urban+Transport+System
+
+9. Kampala Affordable Housing Project:
+https://placehold.co/800x450/3F51B5/FFFFFF.jpg?text=Kampala+Affordable+Housing+Project
+
+10. Tamale Water Treatment Project:
+https://placehold.co/800x450/00BCD4/FFFFFF.jpg?text=Tamale+Water+Treatment+Project
+
+11. Addis Ababa Light Rail:
+https://placehold.co/800x450/E91E63/FFFFFF.jpg?text=Addis+Ababa+Light+Rail
