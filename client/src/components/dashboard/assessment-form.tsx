@@ -100,9 +100,9 @@ export default function AssessmentForm({ onAssessmentComplete }: AssessmentFormP
         : "This project demonstrates good ESG practices overall. Continue to monitor and improve performance in all categories.";
       
       // Calculate separate E, S, G grades
-      const environmentalCategories = categories.slice(0, 5); // First 5 are environmental
-      const socialCategories = categories.slice(5, 8); // Next 3 are social
-      const governanceCategories = categories.slice(8); // Last 3 are governance
+      const environmentalCategories = categories.slice(0, 6); // First 6 are environmental (including Climate Risk)
+      const socialCategories = categories.slice(6, 9); // Next 3 are social
+      const governanceCategories = categories.slice(9); // Last 2 are governance
       
       const calcAvgGrade = (cats: RiskCategory[]): string => {
         const avg = cats.reduce((sum, cat) => {
@@ -220,9 +220,9 @@ export default function AssessmentForm({ onAssessmentComplete }: AssessmentFormP
   };
 
   // Group categories by type
-  const environmentalCategories = categories.slice(0, 5); // First 5 are environmental
-  const socialCategories = categories.slice(5, 8); // Next 3 are social
-  const governanceCategories = categories.slice(8); // Last 3 are governance
+  const environmentalCategories = categories.slice(0, 6); // First 6 are environmental (including Climate Risk)
+  const socialCategories = categories.slice(6, 9); // Next 3 are social
+  const governanceCategories = categories.slice(9); // Last 2 are governance
 
   // Helper to render grade selector
   const renderGradeSelector = (category: RiskCategory) => {

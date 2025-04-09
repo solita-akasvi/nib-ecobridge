@@ -69,6 +69,7 @@ export default function ProjectPage() {
       { id: "resourceUse", label: "Resource Use", grade: riskAssessment.resourceUse },
       { id: "pollutionWaste", label: "Pollution & Waste", grade: riskAssessment.pollutionWaste },
       { id: "biodiversityImpact", label: "Biodiversity Impact", grade: riskAssessment.biodiversityImpact },
+      { id: "climateRisk", label: "Climate Risk", grade: riskAssessment.climateRisk },
     ];
   };
 
@@ -88,7 +89,6 @@ export default function ProjectPage() {
     return [
       { id: "responsibleOperation", label: "Responsible Operation", grade: riskAssessment.responsibleOperation },
       { id: "corruptionEthics", label: "Corruption & Ethics", grade: riskAssessment.corruptionEthics },
-      { id: "climateRisk", label: "Climate Risk", grade: riskAssessment.climateRisk },
     ];
   };
 

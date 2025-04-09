@@ -90,6 +90,13 @@ export const RISK_CATEGORIES: RiskCategory[] = [
     tooltip: "Consider habitat disruption, ecosystem conservation efforts, and impact on wildlife. Grade 'A' for projects that actively protect or enhance biodiversity; 'D' for those causing significant habitat destruction without mitigation.",
     grade: "" as GradeType,
   },
+  {
+    id: "climate_risk",
+    title: "Climate Risk",
+    description: "Evaluate risks related to climate change and adaptation/mitigation strategies.",
+    tooltip: "Consider exposure to climate hazards, adaptation measures, and contribution to climate resilience. Grade 'A' for projects with robust climate adaptation and minimal emissions; 'D' for projects highly vulnerable to climate impacts with no resilience measures.",
+    grade: "" as GradeType,
+  },
   
   // Social Categories
   {
@@ -183,6 +190,9 @@ export const getImprovementSuggestions = (categories: RiskCategory[]): string =>
           break;
         case "biodiversity_impact":
           suggestion = "Develop habitat conservation plans and minimize disturbance to natural ecosystems.";
+          break;
+        case "climate_risk":
+          suggestion = "Implement climate adaptation measures and reduce climate vulnerability in project design.";
           break;
         case "labor_practices":
           suggestion = "Improve workplace safety standards and ensure fair compensation policies.";
