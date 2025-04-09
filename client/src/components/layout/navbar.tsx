@@ -27,12 +27,12 @@ export default function Navbar() {
                 </div>
               </Link>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <div className="hidden sm:ml-6 sm:flex sm:space-x-8 items-center">
               {navItems.map((item) => (
                 <Link key={item.path} href={item.path}>
                   <span
                     className={cn(
-                      "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium cursor-pointer",
+                      "inline-flex items-center px-1 pb-2 border-b-2 text-sm font-medium cursor-pointer",
                       location === item.path
                         ? "border-primary-500 text-neutral-900"
                         : "border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-700"
