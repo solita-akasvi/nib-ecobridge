@@ -53,19 +53,6 @@ export function RiskOverviewCard({ project, riskAssessment }: RiskOverviewCardPr
   
   return (
     <Card className="mb-6">
-      <div className="w-full h-64 overflow-hidden">
-        <img 
-          src={getProjectImage(project.id)} 
-          alt={project.name} 
-          className="w-full h-full object-cover"
-          loading="eager"
-          onError={(e) => {
-            if (e.currentTarget) {
-              e.currentTarget.src = `https://via.placeholder.com/1200x400/1e88e5/ffffff?text=${encodeURIComponent(project.name)}`;
-            }
-          }}
-        />
-      </div>
       <CardContent className="pt-6">
         <div className="flex flex-col space-y-4 md:flex-row md:items-start md:space-y-0 md:space-x-6">
           <div className="flex-1">
