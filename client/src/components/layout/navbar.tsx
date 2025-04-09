@@ -1,6 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Bell } from "lucide-react";
+import logoImage from "@assets/Logo.png";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -21,7 +22,7 @@ export default function Navbar() {
               <Link href="/">
                 <div className="flex items-center">
                   <img 
-                    src="/logo.png" 
+                    src={logoImage} 
                     alt="EcoBridge Logo" 
                     className="h-10 w-auto transition-transform duration-200 ease-in-out hover:scale-105" 
                   />
