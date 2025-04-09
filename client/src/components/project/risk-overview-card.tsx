@@ -9,14 +9,15 @@ import { getGradeLabel } from "@/lib/assessment-data";
 // Function to get project images from stock photos
 function getProjectImage(projectId: number): string {
   const stockImages: Record<number, string> = {
-    1: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2344&auto=format&fit=crop",
-    2: "https://images.unsplash.com/photo-1636606648999-b97d2910a2e0?q=80&w=2456&auto=format&fit=crop",
-    3: "https://images.unsplash.com/photo-1627483262769-04d0a1401487?q=80&w=2370&auto=format&fit=crop",
-    4: "https://images.unsplash.com/photo-1605937363875-1fd4fd6110c5?q=80&w=2370&auto=format&fit=crop",
-    5: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2344&auto=format&fit=crop",
-    6: "https://images.unsplash.com/photo-1640465695297-294f4b50a8d5?q=80&w=2532&auto=format&fit=crop"
+    1: "https://images.unsplash.com/photo-1524252500348-1bb07b83f3be?q=80&w=2940&auto=format&fit=crop", // Solar project
+    2: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=2940&auto=format&fit=crop", // Wind power
+    3: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069&auto=format&fit=crop", // Mining
+    4: "https://images.unsplash.com/photo-1598965649673-9a1d6c2c4079?q=80&w=2938&auto=format&fit=crop", // Gold mining
+    5: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2344&auto=format&fit=crop", // Solar panels
+    6: "https://images.unsplash.com/photo-1640465695297-294f4b50a8d5?q=80&w=2532&auto=format&fit=crop"  // Solar farm
   };
   
+  // Fallback to category placeholders if image unavailable
   return stockImages[projectId] || 
     `https://via.placeholder.com/800x450/1e88e5/ffffff?text=Project+${projectId}`;
 }

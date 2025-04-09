@@ -21,7 +21,7 @@ export default function Navbar() {
               <Link href="/">
                 <div className="flex items-center">
                   <img 
-                    src="/images/logo.png" 
+                    src="/images/logo.svg" 
                     alt="EcoBridge Logo" 
                     className="h-8 w-auto transition-transform duration-200 ease-in-out hover:scale-105" 
                     onError={(e) => {

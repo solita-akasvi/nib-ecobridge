@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="180" height="50" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .text { font-family: Arial, sans-serif; font-weight: bold; }
+    .eco { fill: #2e7d32; }
+    .bridge { fill: #1565c0; }
+  </style>
+  <g>
+    <text x="10" y="35" class="text eco" font-size="24">Eco</text>
+    <text x="60" y="35" class="text bridge" font-size="24">Bridge</text>
+    <path d="M10,40 H170" stroke="#4CAF50" stroke-width="3" />
+    <path d="M40,40 Q90,20 140,40" fill="none" stroke="#1976D2" stroke-width="3" />
+  </g>
+</svg>
