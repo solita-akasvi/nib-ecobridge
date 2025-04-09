@@ -21,20 +21,14 @@ export default function Navbar() {
               <Link href="/">
                 <div className="flex items-center">
                   <img 
-                    src="/images/logo.svg" 
+                    src="/images/logo.png" 
                     alt="EcoBridge Logo" 
-                    className="h-8 w-auto transition-transform duration-200 ease-in-out hover:scale-105" 
-                    onError={(e) => {
-                      const fallbackLogo = document.createElement('div');
-                      fallbackLogo.className = 'h-8 px-2 flex items-center justify-center bg-primary-500 text-white font-bold rounded';
-                      fallbackLogo.textContent = 'EcoBridge';
-                      e.currentTarget.parentNode?.replaceChild(fallbackLogo, e.currentTarget);
-                    }} 
+                    className="h-10 w-auto transition-transform duration-200 ease-in-out hover:scale-105" 
                   />
                 </div>
               </Link>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <div className="hidden sm:ml-6 sm:flex sm:space-x-8 sm:items-end pb-2">
               {navItems.map((item) => (
                 <Link key={item.path} href={item.path}>
                   <span
@@ -51,7 +45,7 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
+          <div className="hidden sm:ml-6 sm:flex sm:items-center sm:pb-2">
             <button className="bg-white p-1 rounded-full text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
               <span className="sr-only">View notifications</span>
               <Bell className="h-6 w-6" />
@@ -67,7 +61,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-          <div className="-mr-2 flex items-center sm:hidden">
+          <div className="-mr-2 flex items-center sm:hidden mt-1">
             <button className="inline-flex items-center justify-center p-2 rounded-md text-neutral-400 hover:text-neutral-500 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500">
               <span className="sr-only">Open main menu</span>
               <svg
