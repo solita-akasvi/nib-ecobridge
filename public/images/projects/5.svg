@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background representing Kenyan landscape -->
+  <rect width="400" height="300" fill="#f0e7c5" />
+  
+  <!-- Sky gradient -->
+  <rect width="400" height="150" fill="#59a2e6" />
+  
+  <!-- Mountains with volcanic features (Olkaria is in volcanic area) -->
+  <path d="M0,150 L60,100 L120,130 L180,80 L240,120 L320,90 L400,130 L400,150 Z" fill="#8a5f41" />
+  
+  <!-- Geothermal features (Olkaria has geothermal activity) -->
+  <circle cx="100" cy="145" r="3" fill="#f5f5f5" opacity="0.7" />
+  <circle cx="130" cy="148" r="2" fill="#f5f5f5" opacity="0.7" />
+  <circle cx="250" cy="140" r="4" fill="#f5f5f5" opacity="0.8" />
+  <circle cx="300" cy="147" r="3" fill="#f5f5f5" opacity="0.7" />
+  
+  <!-- Manufacturing facility -->
+  <rect x="50" y="170" width="120" height="60" fill="#ddd" stroke="#888" stroke-width="1" />
+  <rect x="50" y="170" width="120" height="10" fill="#b0c4de" stroke="#888" stroke-width="1" />
+  
+  <!-- Manufacturing facility windows -->
+  <rect x="60" y="190" width="10" height="15" fill="#b0c4de" />
+  <rect x="80" y="190" width="10" height="15" fill="#b0c4de" />
+  <rect x="100" y="190" width="10" height="15" fill="#b0c4de" />
+  <rect x="120" y="190" width="10" height="15" fill="#b0c4de" />
+  <rect x="140" y="190" width="10" height="15" fill="#b0c4de" />
+  
+  <!-- Door -->
+  <rect x="95" y="215" width="15" height="15" fill="#a0a0a0" />
+  
+  <!-- Solar manufacturing floor -->
+  <rect x="190" y="170" width="160" height="80" fill="#f0f0f0" stroke="#888" stroke-width="1" />
+  <rect x="190" y="170" width="160" height="15" fill="#b0c4de" stroke="#888" stroke-width="1" />
+  
+  <!-- Solar panels being manufactured -->
+  <g transform="translate(210, 200)">
+    <rect width="40" height="30" fill="#3a5a9a" stroke="#000" stroke-width="0.5" />
+    <line x1="0" y1="10" x2="40" y2="10" stroke="#000" stroke-width="0.5" />
+    <line x1="0" y1="20" x2="40" y2="20" stroke="#000" stroke-width="0.5" />
+    <line x1="10" y1="0" x2="10" y2="30" stroke="#000" stroke-width="0.5" />
+    <line x1="20" y1="0" x2="20" y2="30" stroke="#000" stroke-width="0.5" />
+    <line x1="30" y1="0" x2="30" y2="30" stroke="#000" stroke-width="0.5" />
+  </g>
+  
+  <g transform="translate(270, 200)">
+    <rect width="40" height="30" fill="#3a5a9a" stroke="#000" stroke-width="0.5" />
+    <line x1="0" y1="10" x2="40" y2="10" stroke="#000" stroke-width="0.5" />
+    <line x1="0" y1="20" x2="40" y2="20" stroke="#000" stroke-width="0.5" />
+    <line x1="10" y1="0" x2="10" y2="30" stroke="#000" stroke-width="0.5" />
+    <line x1="20" y1="0" x2="20" y2="30" stroke="#000" stroke-width="0.5" />
+    <line x1="30" y1="0" x2="30" y2="30" stroke="#000" stroke-width="0.5" />
+  </g>
+  
+  <g transform="translate(290, 240)">
+    <rect width="40" height="30" fill="#3a5a9a" stroke="#000" stroke-width="0.5" opacity="0.7" />
+    <line x1="0" y1="10" x2="40" y2="10" stroke="#000" stroke-width="0.5" />
+    <line x1="0" y1="20" x2="40" y2="20" stroke="#000" stroke-width="0.5" />
+    <line x1="10" y1="0" x2="10" y2="30" stroke="#000" stroke-width="0.5" />
+    <line x1="20" y1="0" x2="20" y2="30" stroke="#000" stroke-width="0.5" />
+    <line x1="30" y1="0" x2="30" y2="30" stroke="#000" stroke-width="0.5" />
+  </g>
+  
+  <!-- Manufacturing equipment -->
+  <rect x="210" y="250" width="60" height="10" fill="#777" />
+  <rect x="215" y="245" width="50" height="5" fill="#999" />
+  
+  <!-- Roof-mounted solar panels -->
+  <g transform="translate(220, 170)">
+    <rect width="20" height="15" fill="#3a5a9a" stroke="#000" stroke-width="0.5" transform="skewX(-10)" />
+    <rect width="20" height="15" fill="#3a5a9a" stroke="#000" stroke-width="0.5" transform="translate(25, 0) skewX(-10)" />
+    <rect width="20" height="15" fill="#3a5a9a" stroke="#000" stroke-width="0.5" transform="translate(50, 0) skewX(-10)" />
+    <rect width="20" height="15" fill="#3a5a9a" stroke="#000" stroke-width="0.5" transform="translate(75, 0) skewX(-10)" />
+    <rect width="20" height="15" fill="#3a5a9a" stroke="#000" stroke-width="0.5" transform="translate(100, 0) skewX(-10)" />
+  </g>
+  
+  <!-- Title -->
+  <text x="200" y="30" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#000">
+    Olkaria Solar Manufacturing Park
+  </text>
+  <text x="200" y="50" font-family="Arial" font-size="14" text-anchor="middle" fill="#000">
+    Kenya
+  </text>
+</svg>

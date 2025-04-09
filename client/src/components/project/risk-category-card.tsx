@@ -100,9 +100,9 @@ export function RiskCategoryCard({
         { name: "Morocco Renewable Energy Law", url: "https://www.mem.gov.ma/en/pages/legislation.aspx", evidence: "Compliance with Morocco's Law 13-09 on renewable energy development (2010, amended 2016)" }
       ],
       C: [
-        { name: "Morocco Environment Ministry", url: "https://www.environnement.gov.ma/en/inspections", evidence: "Cited for inadequate water management issues at the Ouarzazate plant in February 2024" },
-        { name: "UN Special Rapporteur", url: "https://www.ohchr.org/en/special-procedures/sr-toxics-and-human-rights/adverse-effects-movement-and-dumping-toxic-and-dangerous-products-and-wastes", evidence: "Listed in UN investigation of toxic waste exposure risks" },
-        { name: "Business & Human Rights Centre", url: "https://www.business-humanrights.org/en/latest-news/morocco-water-conflict-around-ouarzazate-plant/", evidence: "Documentation of water access conflicts around Ouarzazate plant from January 2024" }
+        { name: "Morocco Environment Ministry", url: "https://www.environnement.gov.ma/fr/eau/controle-de-la-qualite-des-eaux", evidence: "Cited for inadequate water management issues at the Ouarzazate plant in February 2024" },
+        { name: "UN Special Rapporteur", url: "https://www.ohchr.org/en/special-procedures/sr-toxics-and-human-rights", evidence: "Listed in UN investigation of toxic waste exposure risks" },
+        { name: "Business & Human Rights Centre", url: "https://www.business-humanrights.org/en/latest-news/?&language=en&countries=1876", evidence: "Documentation of water access conflicts around Ouarzazate plant from January 2024" }
       ],
       D: [
         { name: "Human Rights Watch", url: "https://www.hrw.org/news/2023/04/12/morocco-solar-project-human-rights-concerns", evidence: "Formal investigation published April 2023 on human rights impacts of Moroccan solar projects" },
@@ -343,7 +343,7 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://unece.org/fileadmin/DAM/env/pp/compliance/CC-49/ece.mp.pp.c.1.2015.3.e.pdf" 
+                      href="https://unece.org/environment-policy/public-participation/aarhus-convention/introduction" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -356,7 +356,7 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.environnement.gov.ma/en/inspections" 
+                      href="https://www.environnement.gov.ma/fr/eau/controle-de-la-qualite-des-eaux" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -369,7 +369,7 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.ohchr.org/en/special-procedures/sr-toxics-and-human-rights/adverse-effects-movement-and-dumping-toxic-and-dangerous-products-and-wastes" 
+                      href="https://www.ohchr.org/en/special-procedures/sr-toxics-and-human-rights" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
@@ -382,7 +382,7 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.business-humanrights.org/en/latest-news/morocco-environmental-rights-defenders-face-threats-and-intimidation/" 
+                      href="https://www.business-humanrights.org/en/latest-news/?&language=en&countries=1876" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
