@@ -29,7 +29,7 @@ export default function Navbar() {
                 </div>
               </Link>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8 sm:items-end pb-2">
+            <div className="hidden sm:ml-6 sm:flex sm:space-x-8 sm:items-center">
               {navItems.map((item) => (
                 <Link key={item.path} href={item.path}>
                   <span
@@ -46,7 +46,7 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center sm:pb-2">
+          <div className="hidden sm:ml-6 sm:flex sm:items-center">
             <button className="bg-white p-1 rounded-full text-neutral-400 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
               <span className="sr-only">View notifications</span>
               <Bell className="h-6 w-6" />

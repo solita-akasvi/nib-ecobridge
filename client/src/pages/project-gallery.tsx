@@ -9,7 +9,7 @@ export default function ProjectGalleryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="md:flex md:items-center md:justify-between mb-5">
             <div className="flex-1 min-w-0">
-              <h1 className="text-2xl font-semibold text-neutral-800 sm:text-3xl">
+              <h1 className="text-2xl font-semibold text-neutral-800 sm:text-3xl mt-4">
                 My Projects
               </h1>
             </div>
