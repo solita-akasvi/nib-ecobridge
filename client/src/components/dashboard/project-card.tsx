@@ -130,6 +130,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.funding} Funding
             </span>
           )}
+          
+          {/* Project Status Badge */}
+          {(project.id === 6 || project.id === 3 || project.id === 5) && (
+            <Badge variant="outline" className="ml-auto bg-green-50 text-green-700 border-green-200">
+              New
+            </Badge>
+          )}
+          {(project.id === 2 || project.id === 4 || project.id === 1) && (
+            <Badge variant="outline" className="ml-auto bg-blue-50 text-blue-700 border-blue-200">
+              Funded
+            </Badge>
+          )}
         </div>
         
         <div className="grid grid-cols-3 gap-2 mb-4">
