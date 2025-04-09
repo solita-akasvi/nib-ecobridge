@@ -63,27 +63,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow">
-      <div className="h-48 overflow-hidden bg-slate-100">
-        <img 
-          className="h-full w-full object-cover transition-opacity duration-300" 
-          src={`/images/projects/${project.id}.svg`} 
-          alt={project.name}
-          loading="eager"
-          onError={(e) => {
-            if (e.currentTarget) {
-              // Prevent blinking by setting opacity to 0 first
-              e.currentTarget.style.opacity = '0';
-              // Use a placeholder showing the project category
-              setTimeout(() => {
-                if (e.currentTarget) {
-                  e.currentTarget.src = `https://via.placeholder.com/800x450/e2e8f0/0f172a?text=${encodeURIComponent(project.category)}`;
-                  e.currentTarget.style.opacity = '1';
-                  e.currentTarget.onerror = null;
-                }
-              }, 100);
-            }
-          }}
-        />
+      <div className="h-48 overflow-hidden bg-slate-100 flex items-center justify-center">
+        <object 
+          className="h-full w-full object-cover" 
+          data={`/images/projects/${project.id}.svg`}
+          type="image/svg+xml"
+          aria-label={project.name}
+        >
+          {/* Fallback for browsers that don't support object */}
+          <img 
+            className="h-full w-full object-cover" 
+            src={`/images/projects/${project.id}.svg`}
+            alt={project.name} 
+          />
+        </object>
       </div>
       
       <CardContent className="p-5">
