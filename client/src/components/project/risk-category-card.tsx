@@ -356,7 +356,7 @@ export function RiskCategoryCard({
                   <div className="min-w-4 mr-2">•</div>
                   <div>
                     <a 
-                      href="https://www.environnement.gov.ma/fr/eau/controle-de-la-qualite-des-eaux" 
+                      href="https://www.environnement.gov.ma" 
                       className="text-blue-600 hover:underline" 
                       target="_blank" 
                       rel="noopener noreferrer"
