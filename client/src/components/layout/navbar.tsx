@@ -8,7 +8,7 @@ export default function Navbar() {
   const navItems = [
     { name: "Dashboard", path: "/" },
     { name: "Risk Assessment", path: "/risk-assessment" },
-    { name: "Project Gallery", path: "/project-gallery" },
+    { name: "My Projects", path: "/project-gallery" },
     { name: "Resources", path: "/resources" },
   ];
 
@@ -21,7 +21,7 @@ export default function Navbar() {
               <Link href="/">
                 <div className="flex items-center">
                   <img 
-                    src="/images/logo.png" 
+                    src="https://49bfdd72-2d4a-472d-8625-bc6f943e537a-00-3rq2iny0esz20.riker.replit.dev/images/logo.png" 
                     alt="EcoBridge Logo" 
                     className="h-10 w-auto transition-transform duration-200 ease-in-out hover:scale-105" 
                   />

@@ -42,8 +42,7 @@ export default function ProjectGallery() {
   return (
     <div className="bg-white rounded-lg shadow">
       <div className="px-6 py-5 border-b border-neutral-200">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-medium text-neutral-800">Project Gallery</h2>
+        <div className="flex items-center justify-end">
           <div className="flex space-x-2">
             <Button variant="outline" className="flex items-center">
               <SlidersHorizontal className="mr-2 h-4 w-4" /> Filters
