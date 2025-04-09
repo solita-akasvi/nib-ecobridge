@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with desert-like color -->
+  <rect width="400" height="300" fill="#f3e3c8" />
+  
+  <!-- Sky gradient -->
+  <rect width="400" height="170" fill="#88c0eb" />
+  
+  <!-- Sun -->
+  <circle cx="330" cy="70" r="40" fill="#ffda44" />
+  <circle cx="330" cy="70" r="30" fill="#ffea94" />
+  
+  <!-- Solar panel array 1 -->
+  <g transform="translate(50, 190)">
+    <rect width="120" height="70" fill="#303f9f" stroke="#000" stroke-width="1" />
+    <line x1="0" y1="14" x2="120" y2="14" stroke="#000" stroke-width="1" />
+    <line x1="0" y1="28" x2="120" y2="28" stroke="#000" stroke-width="1" />
+    <line x1="0" y1="42" x2="120" y2="42" stroke="#000" stroke-width="1" />
+    <line x1="0" y1="56" x2="120" y2="56" stroke="#000" stroke-width="1" />
+    <line x1="30" y1="0" x2="30" y2="70" stroke="#000" stroke-width="1" />
+    <line x1="60" y1="0" x2="60" y2="70" stroke="#000" stroke-width="1" />
+    <line x1="90" y1="0" x2="90" y2="70" stroke="#000" stroke-width="1" />
+  </g>
+  
+  <!-- Solar panel array 2 -->
+  <g transform="translate(200, 190)">
+    <rect width="120" height="70" fill="#303f9f" stroke="#000" stroke-width="1" />
+    <line x1="0" y1="14" x2="120" y2="14" stroke="#000" stroke-width="1" />
+    <line x1="0" y1="28" x2="120" y2="28" stroke="#000" stroke-width="1" />
+    <line x1="0" y1="42" x2="120" y2="42" stroke="#000" stroke-width="1" />
+    <line x1="0" y1="56" x2="120" y2="56" stroke="#000" stroke-width="1" />
+    <line x1="30" y1="0" x2="30" y2="70" stroke="#000" stroke-width="1" />
+    <line x1="60" y1="0" x2="60" y2="70" stroke="#000" stroke-width="1" />
+    <line x1="90" y1="0" x2="90" y2="70" stroke="#000" stroke-width="1" />
+  </g>
+  
+  <!-- Solar tower -->
+  <rect x="180" y="90" width="40" height="100" fill="#e0e0e0" stroke="#000" stroke-width="1" />
+  <circle cx="200" cy="90" r="15" fill="#ffea94" stroke="#000" stroke-width="1" />
+  
+  <!-- Title -->
+  <text x="200" y="30" font-family="Arial" font-size="18" font-weight="bold" text-anchor="middle" fill="#000">
+    Ouarzazate Solar Power Station
+  </text>
+  <text x="200" y="50" font-family="Arial" font-size="14" text-anchor="middle" fill="#000">
+    Morocco
+  </text>
+  
+  <!-- Reflective mirrors -->
+  <g transform="translate(80, 170)">
+    <path d="M0,0 L40,0 L35,10 L5,10 Z" fill="#ccc" stroke="#000" stroke-width="0.5" />
+  </g>
+  <g transform="translate(130, 170)">
+    <path d="M0,0 L40,0 L35,10 L5,10 Z" fill="#ccc" stroke="#000" stroke-width="0.5" />
+  </g>
+  <g transform="translate(230, 170)">
+    <path d="M0,0 L40,0 L35,10 L5,10 Z" fill="#ccc" stroke="#000" stroke-width="0.5" />
+  </g>
+  <g transform="translate(280, 170)">
+    <path d="M0,0 L40,0 L35,10 L5,10 Z" fill="#ccc" stroke="#000" stroke-width="0.5" />
+  </g>
+</svg>

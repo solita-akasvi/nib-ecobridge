@@ -10,7 +10,7 @@ export default function ProjectGalleryPage() {
           <div className="md:flex md:items-center md:justify-between mb-8">
             <div className="flex-1 min-w-0">
               <h1 className="text-2xl font-semibold text-neutral-800 sm:text-3xl">
-                ESG Project Gallery
+                EcoBridge Gallery
               </h1>
               <p className="mt-1 text-neutral-500">
                 Discover sustainable infrastructure projects across Global South countries
