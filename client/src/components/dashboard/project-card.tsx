@@ -21,9 +21,9 @@ function getProjectImage(projectId: number): string {
     1: "https://images.unsplash.com/photo-1524252500348-1bb07b83f3be?q=80&w=2940&auto=format&fit=crop", // Solar project
     2: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=2940&auto=format&fit=crop", // Wind power
     3: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069&auto=format&fit=crop", // Mining
-    4: "https://images.unsplash.com/photo-1598965649673-9a1d6c2c4079?q=80&w=2938&auto=format&fit=crop", // Gold mining
+    4: "https://images.theconversation.com/files/509425/original/file-20230210-26-satqns.jpg?ixlib=rb-4.1.0&rect=0%2C0%2C5615%2C2808&q=45&auto=format&w=1356&h=668&fit=crop", // Gold mining
     5: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2344&auto=format&fit=crop", // Solar panels
-    6: "https://images.unsplash.com/photo-1640465695297-294f4b50a8d5?q=80&w=2532&auto=format&fit=crop"  // Solar farm
+    6: "https://images.squarespace-cdn.com/content/v1/5acea5f9f2e6b1da315acf14/1591851100213-8N24X7EBCGGGKB51XU7G/image-asset.jpeg?format=1000w"  // Ouarzazate Solar Power Station
   };
   
   // Fallback to category placeholders if image unavailable
