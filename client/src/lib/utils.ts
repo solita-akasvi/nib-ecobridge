@@ -23,17 +23,17 @@ export function getESGInsightsPrompt(category: string, projectName: string, coun
     prompt = `Analyze the following environmental metrics for a project named "${projectName}" in ${country}, category ${projectCategory}:
     ${metricsFormatted}
     
-    Generate 2-3 concise, bullet-point insights about environmental risks and specific actionable recommendations. Each bullet should reference applicable frameworks like IFC Performance Standards, GRI, or SASB when possible. Include confidence scores.`;
+    Generate 2-3 concise, bullet-point insights about environmental risks and specific actionable recommendations. Each bullet should reference applicable frameworks like IFC Performance Standards, GRI, or SASB when possible.`;
   } else if (category === "social") {
     prompt = `Analyze the following social metrics for a project named "${projectName}" in ${country}, category ${projectCategory}:
     ${metricsFormatted}
     
-    Generate 2-3 concise, bullet-point insights about social risks and specific actionable recommendations. Each bullet should reference applicable frameworks like ILO standards, UN Guiding Principles, or SA8000 when possible. Include confidence scores.`;
+    Generate 2-3 concise, bullet-point insights about social risks and specific actionable recommendations. Each bullet should reference applicable frameworks like ILO standards, UN Guiding Principles, or SA8000 when possible.`;
   } else if (category === "governance") {
     prompt = `Analyze the following governance metrics for a project named "${projectName}" in ${country}, category ${projectCategory}:
     ${metricsFormatted}
     
-    Generate 2-3 concise, bullet-point insights about governance risks and specific actionable recommendations. Each bullet should reference applicable frameworks like OECD Guidelines, UN Global Compact, or ISO standards when possible. Include confidence scores.`;
+    Generate 2-3 concise, bullet-point insights about governance risks and specific actionable recommendations. Each bullet should reference applicable frameworks like OECD Guidelines, UN Global Compact, or ISO standards when possible.`;
   }
   
   return prompt;
@@ -41,5 +41,5 @@ export function getESGInsightsPrompt(category: string, projectName: string, coun
 
 // Get the system prompt used for OpenAI API
 export function getAISystemPrompt(): string {
-  return `You are an ESG (Environmental, Social, Governance) analyst providing extremely concise, actionable insights based on project metrics. Focus on specific, practical actions stakeholders can take to mitigate risks. Format your response as bullet points with 3-4 specific actionable recommendations. For each bullet point, start with a bolded title followed by a colon and then a brief explanation. After the explanation, include a parenthetical confidence score showing your certainty (e.g., '(confidence: 87%)'). Refer to objective standards, frameworks, or research when possible in your assessment. Each bullet point should be no more than 20 words excluding the confidence score. DO NOT use markdown formatting like **Title**. Instead, structure each bullet like 'Title: Detail (confidence: XX%)' where the title will be styled separately.`;
+  return `You are an ESG (Environmental, Social, Governance) analyst providing extremely concise, actionable insights based on project metrics. Focus on specific, practical actions stakeholders can take to mitigate risks. Format your response as bullet points with 3-4 specific actionable recommendations. For each bullet point, start with a bolded title followed by a colon and then a brief explanation. Refer to objective standards, frameworks, or research when possible in your assessment. Each bullet point should be no more than 20 words. DO NOT use markdown formatting like **Title**. Instead, structure each bullet like 'Title: Detail' where the title will be styled separately.`;
 }
