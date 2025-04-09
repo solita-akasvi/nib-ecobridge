@@ -163,9 +163,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Determine risk level from grade if not provided
       const riskLevel = data.riskLevel || 
         (data.overallGrade === 'A' ? 'Low' : 
-         data.overallGrade === 'B' ? 'Moderate' : 
+         data.overallGrade === 'B' ? 'Medium' : 
          data.overallGrade === 'C' ? 'High' : 
-         data.overallGrade === 'D' ? 'Very High' : 'Moderate');
+         data.overallGrade === 'D' ? 'Very High' : 'Medium');
       
       // Use direct SQL query via execute_sql_tool instead
       try {
@@ -415,7 +415,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
       
       // Determine risk level
-      let riskLevel = "Moderate";
+      let riskLevel = "Medium";
       if (overallRisk < 40) {
         riskLevel = "Low";
       } else if (overallRisk > 60) {
@@ -668,7 +668,7 @@ function getRiskNote(score: number, type: string, country: string): string {
 function getOverallNote(riskLevel: string, category: string, country: string): string {
   if (riskLevel === "Low") {
     return `This project presents a low overall risk profile, indicating favorable conditions for implementation in ${country}. The ${category} sector shows strong potential with minimal obstacles. Recommended to proceed with standard due diligence and monitoring practices.`;
-  } else if (riskLevel === "Moderate") {
+  } else if (riskLevel === "Medium") {
     return `This project presents a moderate overall risk with challenges that require attention. Key recommendations include developing robust stakeholder engagement plans and conducting thorough regulatory analysis for ${category} projects in ${country}.`;
   } else {
     return `This project presents significant risks that require careful management. For ${category} projects in ${country}, we strongly recommend comprehensive risk mitigation strategies, including early regulatory engagement, detailed community consultation, and robust contingency planning.`;

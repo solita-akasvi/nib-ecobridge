@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <div className="h-48 overflow-hidden bg-slate-100">
         <img 
           className="h-full w-full object-cover transition-opacity duration-300" 
-          src={project.imageUrl} 
+          src={`/images/projects/${project.id}.svg`} 
           alt={project.name}
           loading="eager"
           onError={(e) => {
