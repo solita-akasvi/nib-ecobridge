@@ -15,6 +15,21 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
+// Function to get project images from stock photos
+function getProjectImage(projectId: number): string {
+  const stockImages: Record<number, string> = {
+    1: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2344&auto=format&fit=crop",
+    2: "https://images.unsplash.com/photo-1636606648999-b97d2910a2e0?q=80&w=2456&auto=format&fit=crop",
+    3: "https://images.unsplash.com/photo-1627483262769-04d0a1401487?q=80&w=2370&auto=format&fit=crop",
+    4: "https://images.unsplash.com/photo-1605937363875-1fd4fd6110c5?q=80&w=2370&auto=format&fit=crop",
+    5: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2344&auto=format&fit=crop",
+    6: "https://images.unsplash.com/photo-1640465695297-294f4b50a8d5?q=80&w=2532&auto=format&fit=crop"
+  };
+  
+  return stockImages[projectId] || 
+    `https://via.placeholder.com/800x450/1e88e5/ffffff?text=Project+${projectId}`;
+}
+
 interface ProjectCardProps {
   project: Project;
 }
@@ -66,7 +81,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <div className="h-48 overflow-hidden bg-slate-100">
         <img 
           className="h-full w-full object-cover transition-opacity duration-300" 
-          src={`/images/projects/${project.id}.svg`} 
+          src={getProjectImage(project.id)} 
           alt={project.name}
           loading="eager"
           onError={(e) => {

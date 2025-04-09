@@ -3,7 +3,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Project, RiskAssessment } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+
 import { getGradeLabel } from "@/lib/assessment-data";
+
+// Function to get project images from stock photos
+function getProjectImage(projectId: number): string {
+  const stockImages: Record<number, string> = {
+    1: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2344&auto=format&fit=crop",
+    2: "https://images.unsplash.com/photo-1636606648999-b97d2910a2e0?q=80&w=2456&auto=format&fit=crop",
+    3: "https://images.unsplash.com/photo-1627483262769-04d0a1401487?q=80&w=2370&auto=format&fit=crop",
+    4: "https://images.unsplash.com/photo-1605937363875-1fd4fd6110c5?q=80&w=2370&auto=format&fit=crop",
+    5: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2344&auto=format&fit=crop",
+    6: "https://images.unsplash.com/photo-1640465695297-294f4b50a8d5?q=80&w=2532&auto=format&fit=crop"
+  };
+  
+  return stockImages[projectId] || 
+    `https://via.placeholder.com/800x450/1e88e5/ffffff?text=Project+${projectId}`;
+}
 
 interface RiskOverviewCardProps {
   project: Project;
@@ -37,6 +53,19 @@ export function RiskOverviewCard({ project, riskAssessment }: RiskOverviewCardPr
   
   return (
     <Card className="mb-6">
+      <div className="w-full h-64 overflow-hidden">
+        <img 
+          src={getProjectImage(project.id)} 
+          alt={project.name} 
+          className="w-full h-full object-cover"
+          loading="eager"
+          onError={(e) => {
+            if (e.currentTarget) {
+              e.currentTarget.src = `https://via.placeholder.com/1200x400/1e88e5/ffffff?text=${encodeURIComponent(project.name)}`;
+            }
+          }}
+        />
+      </div>
       <CardContent className="pt-6">
         <div className="flex flex-col space-y-4 md:flex-row md:items-start md:space-y-0 md:space-x-6">
           <div className="flex-1">

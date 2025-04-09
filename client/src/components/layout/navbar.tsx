@@ -20,10 +20,17 @@ export default function Navbar() {
             <div className="flex-shrink-0 flex items-center">
               <Link href="/">
                 <div className="flex items-center">
-                  <img src="/images/logo.png" alt="EcoBridge Logo" className="h-8 w-auto transition-transform duration-200 ease-in-out hover:scale-105" onError={(e) => { 
-                    // Fallback if image doesn't load
-                    e.currentTarget.src = "/logo.png"; 
-                  }} />
+                  <img 
+                    src="/images/logo.png" 
+                    alt="EcoBridge Logo" 
+                    className="h-8 w-auto transition-transform duration-200 ease-in-out hover:scale-105" 
+                    onError={(e) => {
+                      const fallbackLogo = document.createElement('div');
+                      fallbackLogo.className = 'h-8 px-2 flex items-center justify-center bg-primary-500 text-white font-bold rounded';
+                      fallbackLogo.textContent = 'EcoBridge';
+                      e.currentTarget.parentNode?.replaceChild(fallbackLogo, e.currentTarget);
+                    }} 
+                  />
                 </div>
               </Link>
             </div>
